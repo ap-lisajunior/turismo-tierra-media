@@ -9,6 +9,15 @@ public abstract class Promocion extends Producto {
 		this.atracciones = new Atraccion[cantAtracciones];
 	}
 	
+	public Promocion(String nombre, int costo, int duracion) {
+		super(nombre, costo, duracion);
+	}
+
+	public Promocion(String nombre, int costo, double tiempo, TipoAtraccion tipoatraccion) {
+		super(nombre, costo, tiempo, tipoatraccion);
+	}
+	
+
 	abstract public void reduccionCostoTotal();
 
 }

@@ -11,8 +11,6 @@ public class PromocionAbsoluta extends Promocion {
 	}
 
 	@Override
-	public void reduccionCostoTotal() {
-
-	}
+	public void reduccionCostoTotal() {}
 
 }

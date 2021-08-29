@@ -14,6 +14,12 @@ public class Producto {
 		this.tipoAtraccion = tipoAtraccion;
 	}
 	
+	public Producto(String nombre, int costo, int tiempo) {
+		this.nombre = nombre;
+		this.costo = costo;
+		this.tiempo = tiempo;
+	}
+
 	protected int getCosto() {
 		return costo;
 	}
