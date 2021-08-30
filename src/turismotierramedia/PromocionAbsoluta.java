@@ -6,7 +6,7 @@ public class PromocionAbsoluta extends Promocion {
 
 	public PromocionAbsoluta(String nombre, int costo, double tiempo, TipoAtraccion tipoAtraccion,
 			int cantAtracciones, int precioFinal) {
-		super(nombre, costo, tiempo, tipoAtraccion, cantAtracciones);
+		super(nombre, costo, tiempo, tipoAtraccion);
 		this.precioFinal = precioFinal;
 	}
 
