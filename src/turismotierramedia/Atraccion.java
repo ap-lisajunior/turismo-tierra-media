@@ -5,7 +5,8 @@ public class Atraccion extends Producto {
 	private int cupo;
 
 	public Atraccion(String nombre, int costo, double tiempo, TipoAtraccion tipoAtraccion, int cupo) {
-		super(nombre, costo, tiempo, tipoAtraccion);
+		super(nombre, tiempo, tipoAtraccion);
+		super.costo = costo;
 		this.cupo = cupo;
 	}
 	

@@ -16,7 +16,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Nombre: " + nombre + " | Presupuesto: " + presupuesto + "| Tiempo disponible = " + tiempo + "| Tipo de atracción preferida: "
+		return "Nombre: " + nombre + "," + "Presupuesto: " + presupuesto + "," + "Tiempo disponible: " + tiempo + "," + "Tipo de atraccion preferida: "
 				+ tipoAtraccion;
 	}
 

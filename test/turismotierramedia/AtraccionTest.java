@@ -6,15 +6,19 @@ import org.junit.Test;
 
 public class AtraccionTest {
 
-	@Test(expected = CupoException.class)
+//	@Test(expected = CupoException.class)
+//	
+//	public void ingresarMasUsuariosQueLosPermitidosPorElCupo() throws CupoException {
+//
+//		
+//	}
 	
-	public void ingresarMasUsuariosQueLosPermitidosPorElCupo() throws CupoException {
-		
-		Atraccion a1 = new Atraccion("moria", 100, 2, 5);
-		
-		a1.reduccionCupo(5);
-		a1.reduccionCupo(1);
-		
+	@Test
+	public void crearUnaAtraccion() {
+		Atraccion atraccion = new Atraccion("Mordor", 25, 3, TipoAtraccion.AVENTURA, 3);
+		assertNotNull(atraccion);
 	}
+	
+	
 
 }

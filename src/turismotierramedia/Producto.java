@@ -3,23 +3,15 @@ package turismotierramedia;
 public class Producto {
 	
 	private String nombre;
-	private int costo;
+	protected int costo;
 	private double tiempo;
 	private TipoAtraccion tipoAtraccion;
 	
-	public Producto(String nombre, int costo, double tiempo, TipoAtraccion tipoAtraccion) {
+	public Producto(String nombre, double tiempo, TipoAtraccion tipoAtraccion) {
 		this.nombre = nombre;
-		this.costo = costo;
 		this.tiempo = tiempo;
 		this.tipoAtraccion = tipoAtraccion;
 	}
-	
-	public Producto(String nombre, int costo, double tiempo) {
-		this.nombre = nombre;
-		this.costo = costo;
-		this.tiempo = tiempo;
-	}
-
 
 	protected int getCosto() {
 		return costo;
