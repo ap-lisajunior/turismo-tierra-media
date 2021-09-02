@@ -19,10 +19,18 @@ public class Producto implements Comparable<Producto>{
 		this.tipoAtraccion = tipoAtraccion;
 	}
 	
-	public Producto(String nombre, int costo, double tiempo, TipoAtraccion tipoAtraccion, int cupo) {
+	public Producto(String nombre, int costo, double tiempo, int cupo) {
 		this.nombre = nombre;
 		this.costo = costo;
 		this.tiempo = tiempo;
+		this.cupo = cupo;
+	}
+	
+	public Producto(String nombre, int costo, double tiempo, int cupo, TipoAtraccion tipoAtraccion) {
+		this.nombre = nombre;
+		this.costo = costo;
+		this.tiempo = tiempo;
+		this.cupo = cupo;
 		this.tipoAtraccion = tipoAtraccion;
 	}
 
@@ -80,4 +88,11 @@ public class Producto implements Comparable<Producto>{
 		return cupo;
 	}
 
+	@Override
+	public String toString() {
+		return "Productos disponibles: nombre: " + nombre + ", costo: " + costo + ", tiempo: " + tiempo + ", tipoAtraccion: "
+				+ tipoAtraccion + ", cupo: " + cupo + "]";
+	}
+
+	
 }
