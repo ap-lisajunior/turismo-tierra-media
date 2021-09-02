@@ -10,7 +10,7 @@ public class AtraccionTest {
 	
 	public void ingresarMasUsuariosQueLosPermitidosPorElCupo() throws CupoException {
 		
-		Atraccion a1 = new Atraccion("moria", 100, 2, 5);
+		Atraccion a1 = new Atraccion("moria", 100, 2, 5, TipoAtraccion.AVENTURA);
 		
 		a1.reduccionCupo(5);
 		a1.reduccionCupo(1);

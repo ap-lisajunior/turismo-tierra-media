@@ -20,6 +20,10 @@ public class Usuario {
 				+ tipoAtraccion;
 	}
 
+	public String getNombre() {
+		return this.getNombre();
+	}
+
 	
 	
 }
