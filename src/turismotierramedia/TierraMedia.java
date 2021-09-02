@@ -34,7 +34,8 @@ public class TierraMedia {
 				TipoAtraccion tipoAtraccion = TipoAtraccion.valueOf(datos[4]);
 
 				Producto p = new Producto(nombre, costo, tiempo, cupo, tipoAtraccion);
-
+				
+				if (!productos.contains(p))
 				productos.add(p);
 			}
 		} catch (FileNotFoundException e) {
@@ -56,25 +57,7 @@ public class TierraMedia {
 		salida.close();
 
 	}
-
-	public static void escribirProductosOrdenadosPorCosto(List<Producto> productos) throws IOException {
-
-		ordenarProductosPorCosto(productos);
-		escribirProductos(productos, "productosxCosto");
-	}
-
-	public static void escribirProductosOrdenadosPorTipo(List<Producto> productos) throws IOException {
-
-		ordenarProductosPorTipoAtraccion(productos);
-		escribirProductos(productos, "productosxTipo");
-	}
-
-	public static void escribirProductosOrdenadosPorTiempo(List<Producto> productos) throws IOException {
-
-		ordenarProductosPorTiempo(productos);
-		escribirProductos(productos, "productosxTiempo");
-	}
-
+	
 	public static void ordenarProductosPorCosto(List<Producto> lista) {
 		Collections.sort(lista, new CostoComparator());
 	}
@@ -85,6 +68,18 @@ public class TierraMedia {
 
 	public static void ordenarProductosPorTipoAtraccion(List<Producto> lista) {
 		Collections.sort(lista, new TipoAtraccionComparator());
+	}
+
+	public static void escribirProductosOrdenadosPorCosto(List<Producto> productos) throws IOException {
+
+		ordenarProductosPorCosto(productos);
+		escribirProductos(productos, "productosxCosto");
+	}
+
+	public static void escribirProductosOrdenadosPorTiempo(List<Producto> productos) throws IOException {
+
+		ordenarProductosPorTiempo(productos);
+		escribirProductos(productos, "productosxTiempo");
 	}
 
 	public static Map<TipoAtraccion, ArrayList<Producto>> agruparPorTipo(List<Producto> productos) {

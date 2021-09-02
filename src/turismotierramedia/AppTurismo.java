@@ -10,9 +10,7 @@ public class AppTurismo {
 
 		LinkedList<Producto> productos = TierraMedia.getProductos("productos.in");
 		TierraMedia.escribirProductosOrdenadosPorCosto(productos);
-		System.out.println(productos);
 		TierraMedia.escribirProductosOrdenadosPorTiempo(productos);
-		System.out.println(productos);
 		Map<TipoAtraccion, ArrayList<Producto>> productosPorTipo = TierraMedia.agruparPorTipo(productos);
 		TierraMedia.escribirProductosAgrupadosPorTipo(productosPorTipo,"agrupadosPorTipo.out");		
 	}

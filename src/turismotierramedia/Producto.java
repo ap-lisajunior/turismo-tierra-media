@@ -1,7 +1,5 @@
 package turismotierramedia;
 
-import java.util.Objects;
-
 public class Producto  {
 
 	private String nombre;
@@ -17,12 +15,6 @@ public class Producto  {
 		this.tipoAtraccion = tipoAtraccion;
 	}
 
-	public Producto(String nombre, int costo, double tiempo, int cupo) {
-		this.nombre = nombre;
-		this.costo = costo;
-		this.tiempo = tiempo;
-		this.cupo = cupo;
-	}
 
 	public Producto(String nombre, int costo, double tiempo, int cupo, TipoAtraccion tipoAtraccion) {
 		this.nombre = nombre;
@@ -50,22 +42,27 @@ public class Producto  {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nombre);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		if (obj == null) {
+		if (obj == null)
 			return false;
-		}
-		if (getClass() != obj.getClass()) {
+		if (getClass() != obj.getClass())
 			return false;
-		}
 		Producto other = (Producto) obj;
-		return Objects.equals(nombre, other.nombre);
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
 	}
 
 	public String getNombre() {
@@ -79,7 +76,7 @@ public class Producto  {
 	public int getCupo() {
 		return cupo;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Productos disponibles: nombre: " + nombre + ", costo: " + costo + ", tiempo: " + tiempo
