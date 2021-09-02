@@ -1,8 +1,0 @@
-Moria 10 2 Aventura 6
-MinasTirith 5 2.5 Paisaje 25
-LaComarca 3 6.5 Degustacion 150
-Mordor 25 3 Aventura 4
-AbismoDehelm 5 2 Paisaje 15
-Lothlorien 35 1 Degustacion 30
-Erebor 12 3 Paisaje 32
-BosqueNegro 3 4 Aventura 12

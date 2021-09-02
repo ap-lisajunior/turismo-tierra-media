@@ -1,10 +1,8 @@
 package turismotierramedia;
 
-import java.util.Arrays;
 import java.util.Objects;
 
-
-public class Producto implements Comparable<Producto>{
+public class Producto  {
 
 	private String nombre;
 	private int costo;
@@ -18,14 +16,14 @@ public class Producto implements Comparable<Producto>{
 		this.tiempo = tiempo;
 		this.tipoAtraccion = tipoAtraccion;
 	}
-	
+
 	public Producto(String nombre, int costo, double tiempo, int cupo) {
 		this.nombre = nombre;
 		this.costo = costo;
 		this.tiempo = tiempo;
 		this.cupo = cupo;
 	}
-	
+
 	public Producto(String nombre, int costo, double tiempo, int cupo, TipoAtraccion tipoAtraccion) {
 		this.nombre = nombre;
 		this.costo = costo;
@@ -77,12 +75,6 @@ public class Producto implements Comparable<Producto>{
 	public TipoAtraccion getTipoAtraccion() {
 		return tipoAtraccion;
 	}
-	
-
-	@Override
-	public int compareTo(Producto otroProducto) {
-		return this.nombre.compareTo(otroProducto.nombre);
-	}
 
 	public int getCupo() {
 		return cupo;
@@ -90,9 +82,14 @@ public class Producto implements Comparable<Producto>{
 
 	@Override
 	public String toString() {
-		return "Productos disponibles: nombre: " + nombre + ", costo: " + costo + ", tiempo: " + tiempo + ", tipoAtraccion: "
-				+ tipoAtraccion + ", cupo: " + cupo + "]";
+		return "Productos disponibles: nombre: " + nombre + ", costo: " + costo + ", tiempo: " + tiempo
+				+ ", tipoAtraccion: " + tipoAtraccion + ", cupo: " + cupo + "]";
 	}
 
-	
+	public void reduccionCupo(int cantUsuarios) throws CupoException {
+		if (this.cupo == 0) {
+			throw new CupoException("Ya no queda lugar para esta atracción");
+		}
+		this.cupo -= cantUsuarios;
+	}
 }
