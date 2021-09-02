@@ -1,13 +1,25 @@
 package turismotierramedia;
 
-public class Producto {
-	
+import java.util.Arrays;
+import java.util.Objects;
+
+
+public class Producto implements Comparable<Producto>{
+
 	private String nombre;
 	private int costo;
 	private double tiempo;
 	private TipoAtraccion tipoAtraccion;
-	
+	private int cupo;
+
 	public Producto(String nombre, int costo, double tiempo, TipoAtraccion tipoAtraccion) {
+		this.nombre = nombre;
+		this.costo = costo;
+		this.tiempo = tiempo;
+		this.tipoAtraccion = tipoAtraccion;
+	}
+	
+	public Producto(String nombre, int costo, double tiempo, TipoAtraccion tipoAtraccion, int cupo) {
 		this.nombre = nombre;
 		this.costo = costo;
 		this.tiempo = tiempo;
@@ -28,6 +40,44 @@ public class Producto {
 
 	protected void setTiempo(double tiempo) {
 		this.tiempo = tiempo;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Producto other = (Producto) obj;
+		return Objects.equals(nombre, other.nombre);
+	}
+
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public TipoAtraccion getTipoAtraccion() {
+		return tipoAtraccion;
+	}
+	
+
+	@Override
+	public int compareTo(Producto otroProducto) {
+		return this.nombre.compareTo(otroProducto.nombre);
+	}
+
+	public int getCupo() {
+		return cupo;
 	}
 
 }

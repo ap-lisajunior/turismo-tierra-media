@@ -15,4 +15,6 @@ public class Atraccion extends Producto {
 		}
 		this.cupo -= cantUsuarios;
 	}
+	
+	
 }
