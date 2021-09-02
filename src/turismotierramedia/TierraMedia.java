@@ -33,7 +33,7 @@ public class TierraMedia {
 				int cupo = Integer.parseInt(datos[3]);
 				TipoAtraccion tipoAtraccion = TipoAtraccion.valueOf(datos[4]);
 
-				Producto p = new Producto(nombre, costo, tiempo, cupo, tipoAtraccion);
+				Producto p = new Atraccion(nombre, costo, tiempo, cupo, tipoAtraccion);
 				
 				if (!productos.contains(p))
 				productos.add(p);

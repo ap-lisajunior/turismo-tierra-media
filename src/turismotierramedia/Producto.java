@@ -1,12 +1,12 @@
 package turismotierramedia;
 
-public class Producto  {
+public class Producto implements Comparable<Producto>{
 
 	private String nombre;
 	private int costo;
 	private double tiempo;
 	private TipoAtraccion tipoAtraccion;
-	private int cupo;
+	
 
 	public Producto(String nombre, int costo, double tiempo, TipoAtraccion tipoAtraccion) {
 		this.nombre = nombre;
@@ -15,14 +15,6 @@ public class Producto  {
 		this.tipoAtraccion = tipoAtraccion;
 	}
 
-
-	public Producto(String nombre, int costo, double tiempo, int cupo, TipoAtraccion tipoAtraccion) {
-		this.nombre = nombre;
-		this.costo = costo;
-		this.tiempo = tiempo;
-		this.cupo = cupo;
-		this.tipoAtraccion = tipoAtraccion;
-	}
 
 	protected int getCosto() {
 		return costo;
@@ -64,6 +56,10 @@ public class Producto  {
 			return false;
 		return true;
 	}
+	@Override
+	public int compareTo(Producto otroProducto) {
+		return this.tipoAtraccion.compareTo(otroProducto.tipoAtraccion);
+	}
 
 	public String getNombre() {
 		return this.nombre;
@@ -72,21 +68,5 @@ public class Producto  {
 	public TipoAtraccion getTipoAtraccion() {
 		return tipoAtraccion;
 	}
-
-	public int getCupo() {
-		return cupo;
-	}
-	
-	@Override
-	public String toString() {
-		return "Productos disponibles: nombre: " + nombre + ", costo: " + costo + ", tiempo: " + tiempo
-				+ ", tipoAtraccion: " + tipoAtraccion + ", cupo: " + cupo + "]";
-	}
-
-	public void reduccionCupo(int cantUsuarios) throws CupoException {
-		if (this.cupo == 0) {
-			throw new CupoException("Ya no queda lugar para esta atracción");
-		}
-		this.cupo -= cantUsuarios;
-	}
+		
 }
