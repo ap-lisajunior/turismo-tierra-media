@@ -2,11 +2,11 @@ package turismotierramedia;
 
 import java.util.LinkedList;
 
-public class PromocionAXB extends Promocion {
+public class PromocionAxB extends Promocion {
 	
 	private Atraccion bonificada;
 
-	public PromocionAXB(String nombre, LinkedList<Atraccion> atracciones, TipoAtraccion tipoAtraccion,
+	public PromocionAxB(String nombre, LinkedList<Atraccion> atracciones, TipoAtraccion tipoAtraccion,
 			TipoPromocion tipoPromocion) {
 		super(nombre, atracciones, tipoAtraccion);
 		this.bonificada = atracciones.getLast();

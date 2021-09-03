@@ -128,7 +128,7 @@ public class TurismoTierraMedia {
 				}
 
 				else if(tipoPromocion.equals(TipoPromocion.AXB)) {
-					promocion = new PromocionAXB(nombre, atraccionesPromocion, tipoAtraccion, tipoPromocion);
+					promocion = new PromocionAxB(nombre, atraccionesPromocion, tipoAtraccion, tipoPromocion);
 				}
 				
 				if(!promociones.contains(promocion)) {
