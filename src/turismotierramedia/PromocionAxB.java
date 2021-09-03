@@ -10,6 +10,7 @@ public class PromocionAXB extends Promocion {
 			TipoPromocion tipoPromocion) {
 		super(nombre, atracciones, tipoAtraccion);
 		this.bonificada = atracciones.getLast();
+		calcularCostoFinal();
 	}
 
 	@Override

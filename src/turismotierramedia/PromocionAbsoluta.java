@@ -10,6 +10,7 @@ public class PromocionAbsoluta extends Promocion {
 			TipoPromocion tipoPromocion, int costoFinal) {
 		super(nombre, atracciones, tipoAtraccion);
 		this.costoFinal = costoFinal;
+		calcularCostoFinal();
 	}
 
 	@Override

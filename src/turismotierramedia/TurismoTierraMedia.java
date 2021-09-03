@@ -10,11 +10,17 @@ import java.util.Scanner;
 
 public class TurismoTierraMedia {
 	
+	// DECLARACION LISTAS DE OBJETOS
+	
+	static LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
+	static LinkedList<Atraccion> atracciones = new LinkedList<Atraccion>();
+	static LinkedList<Promocion> promociones = new LinkedList<Promocion>();
+	
 	
 	// OBTENGO LISTA DE USUARIOS DESDE ARCHIVO
 	
 	public static LinkedList<Usuario> getUsuarios(String archivo){
-		LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
+		
 		Scanner sc = null;
 		
 		try {
@@ -48,7 +54,7 @@ public class TurismoTierraMedia {
 	// OBTENGO LISTA DE ATRACCIONES DESDE ARCHIVO
 	
 	public static LinkedList<Atraccion> getAtracciones(String archivo){
-		LinkedList<Atraccion> atracciones = new LinkedList<Atraccion>();
+		
 		Scanner sc = null;
 		
 		try {
@@ -79,15 +85,15 @@ public class TurismoTierraMedia {
 		return atracciones;
 	}
 	
-	//
+	// OBTENGO LISTA DE PROMOCIONES DESDE ARCHIVO
 	
-	public static LinkedList<Promocion> getPromociones(String archivoPromociones, String archivoAtracciones){
-		LinkedList<Promocion> promociones = new LinkedList<Promocion>();
-		LinkedList<Atraccion> atraccionesTotales = getAtracciones(archivoAtracciones);
+	public static LinkedList<Promocion> getPromociones(String archivo){
+		
+		//LinkedList<Atraccion> atraccionesTotales = getAtracciones(archivoAtracciones);
 		Scanner sc = null;
 		
 		try {
-			sc = new Scanner(new File(archivoPromociones));
+			sc = new Scanner(new File(archivo));
 			
 			while(sc.hasNext()) {
 				String linea = sc.nextLine();
@@ -101,8 +107,9 @@ public class TurismoTierraMedia {
 				Promocion promocion = null;
 				LinkedList<Atraccion> atraccionesPromocion = new LinkedList<Atraccion>();
 				
+				
 				for(String nombreAtraccion : nombresAtraccionesPromocion) {
-					for(Atraccion atraccion : atraccionesTotales) {
+					for(Atraccion atraccion : atracciones) {
 						if(atraccion.getNombre().equals(nombreAtraccion)) {
 							atraccionesPromocion.add(atraccion);
 							break;
@@ -137,6 +144,8 @@ public class TurismoTierraMedia {
 		return promociones;
 	}
 	
+	// ESCRITURA DE ARCHIVOS DE SALIDA
+	
 	public static void escribirUsuarios(LinkedList<Usuario> usuarios, String archivo) throws IOException {
 		PrintWriter salida = new PrintWriter(new FileWriter(archivo));
 		
@@ -167,10 +176,12 @@ public class TurismoTierraMedia {
 		
 	}
 	
+	// METODO MAIN
+	
 	public static void main(String[] args) throws IOException {
 		LinkedList<Usuario> usuarios = getUsuarios("usuarios.in");
 		LinkedList<Atraccion> atracciones = getAtracciones("atracciones.in");
-		LinkedList<Promocion> promociones = getPromociones("promociones.in", "atracciones.in");
+		LinkedList<Promocion> promociones = getPromociones("promociones.in");
 		
 		escribirUsuarios(usuarios, "usuarios.out");
 		escribirAtracciones(atracciones, "atracciones.out");

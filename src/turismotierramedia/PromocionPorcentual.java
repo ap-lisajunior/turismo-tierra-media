@@ -10,6 +10,7 @@ public class PromocionPorcentual extends Promocion {
 			TipoPromocion tipoPromocion, double porcentajeDescuento) {
 		super(nombre, atracciones, tipoAtraccion);
 		this.porcentajeDescuento = porcentajeDescuento;
+		calcularCostoFinal();
 	}
 
 	@Override

@@ -30,7 +30,7 @@ public class Atraccion extends Producto {
 	public String toString() {
 		return "Nombre atraccion: " + this.getNombre() + "; Cupo de atracción: " 
 				+ this.getCupo() + "; Costo de atraccion: " + this.getCosto() + "; Tiempo de atraccion: "
-				+ this.getTiempo() + "; Tipo de atraccion: " + this.getTipoAtraccion();
+				+ this.getTiempo() + "; Tipo de atraccion: " + this.getTipoAtraccion().getDescripcion();
 	}		
 	
 	

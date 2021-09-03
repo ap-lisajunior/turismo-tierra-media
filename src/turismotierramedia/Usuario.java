@@ -33,7 +33,7 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Nombre de usuario: " + this.getNombre() + "; Presupuesto: " + this.getPresupuesto() + "; Tiempo disponible: " + this.getTiempo() + "; Tipo de atraccion preferida: "
-				+ this.getTipoAtraccion();
+				+ this.getTipoAtraccion().getDescripcion();
 	}
 	
 	
