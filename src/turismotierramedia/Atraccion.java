@@ -1,19 +1,37 @@
 package turismotierramedia;
 
 public class Atraccion extends Producto {
-	
-	private int cupo;
 
-	public Atraccion(String nombre, int costo, double tiempo, TipoAtraccion tipoAtraccion, int cupo) {
-		super(nombre, tiempo, tipoAtraccion);
-		super.costo = costo;
+	private int cupo;
+	
+	public Atraccion(String nombre, int costo, double tiempo, int cupo, TipoAtraccion tipoAtraccion) {
+		super(nombre, tipoAtraccion);
+		super.setCosto(costo);
+		super.setTiempo(tiempo);
 		this.cupo = cupo;
 	}
-	
-	public void reduccionCupo(int cantUsuarios) throws CupoException {
-		if (this.cupo == 0) {
-			throw new CupoException("Ya no queda lugar para esta atracción");
-		}
-		this.cupo -= cantUsuarios;
+
+
+	protected int getCupo() {
+		return this.cupo;
 	}
+	
+	public void reducirCupo() {
+		this.cupo--;
+	}
+
+	@Override
+	public boolean esUnaPromocion() {
+		return false;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Nombre atraccion: " + this.getNombre() + "; Cupo de atracción: " 
+				+ this.getCupo() + "; Costo de atraccion: " + this.getCosto() + "; Tiempo de atraccion: "
+				+ this.getTiempo() + "; Tipo de atraccion: " + this.getTipoAtraccion();
+	}		
+	
+	
 }

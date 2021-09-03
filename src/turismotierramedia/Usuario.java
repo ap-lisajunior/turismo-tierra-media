@@ -14,12 +14,27 @@ public class Usuario {
 		this.tipoAtraccion = tipoAtraccion;
 	}
 
-	@Override
-	public String toString() {
-		return "Nombre: " + nombre + "," + "Presupuesto: " + presupuesto + "," + "Tiempo disponible: " + tiempo + "," + "Tipo de atraccion preferida: "
-				+ tipoAtraccion;
+	protected String getNombre() {
+		return nombre;
 	}
 
+	protected int getPresupuesto() {
+		return presupuesto;
+	}
+
+	protected double getTiempo() {
+		return tiempo;
+	}
+
+	protected TipoAtraccion getTipoAtraccion() {
+		return tipoAtraccion;
+	}
+
+	@Override
+	public String toString() {
+		return "Nombre de usuario: " + this.getNombre() + "; Presupuesto: " + this.getPresupuesto() + "; Tiempo disponible: " + this.getTiempo() + "; Tipo de atraccion preferida: "
+				+ this.getTipoAtraccion();
+	}
 	
 	
 }

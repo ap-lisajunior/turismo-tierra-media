@@ -1,32 +1,41 @@
 package turismotierramedia;
 
-public class Producto {
+public abstract class Producto {
 	
 	private String nombre;
-	protected int costo;
+	private int costo;
 	private double tiempo;
-	private TipoAtraccion tipoAtraccion;
+	TipoAtraccion tipoAtraccion;
 	
-	public Producto(String nombre, double tiempo, TipoAtraccion tipoAtraccion) {
+	public Producto(String nombre, TipoAtraccion tipoAtraccion) {
 		this.nombre = nombre;
-		this.tiempo = tiempo;
 		this.tipoAtraccion = tipoAtraccion;
 	}
 
-	protected int getCosto() {
-		return costo;
+	protected String getNombre() {
+		return this.nombre;
 	}
 
-	protected void setCosto(int costo) {
-		this.costo = costo;
+	protected int getCosto() {
+		return this.costo;
 	}
 
 	protected double getTiempo() {
-		return tiempo;
+		return this.tiempo;
+	}
+	
+	protected TipoAtraccion getTipoAtraccion() {
+		return this.tipoAtraccion;
+	}
+	
+	abstract public boolean esUnaPromocion();
+
+	public void setCosto(int costoFinal){
+		this.costo = costoFinal;
 	}
 
-	protected void setTiempo(double tiempo) {
-		this.tiempo = tiempo;
+	public void setTiempo(double tiempoFinal) {
+		this.tiempo = tiempoFinal;
 	}
-
+	
 }

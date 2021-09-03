@@ -4,16 +4,17 @@ import java.util.LinkedList;
 
 public class PromocionAbsoluta extends Promocion {
 	
-	private int precioFinal;
+	private int costoFinal;
 
-	public PromocionAbsoluta(String nombre, double tiempo, TipoAtraccion tipoAtraccion, LinkedList<Atraccion> atracciones, int precioFinal) {
-		super(nombre, tiempo, tipoAtraccion, atracciones);
-		this.precioFinal = precioFinal;
+	public PromocionAbsoluta(String nombre, LinkedList<Atraccion> atracciones, TipoAtraccion tipoAtraccion,
+			TipoPromocion tipoPromocion, int costoFinal) {
+		super(nombre, atracciones, tipoAtraccion);
+		this.costoFinal = costoFinal;
 	}
 
 	@Override
-	public void reduccionCostoTotal() {
-		super.setCosto(precioFinal);
+	public void calcularCostoFinal() {
+		super.setCosto(costoFinal);
 	}
 
 }

@@ -10,6 +10,9 @@ import java.util.Scanner;
 
 public class TurismoTierraMedia {
 	
+	
+	// OBTENGO LISTA DE USUARIOS DESDE ARCHIVO
+	
 	public static LinkedList<Usuario> getUsuarios(String archivo){
 		LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
 		Scanner sc = null;
@@ -31,7 +34,6 @@ public class TurismoTierraMedia {
 				if(!usuarios.contains(usuario)) {
 					usuarios.add(usuario);
 				}
-				
 			}
 		}
 		catch (FileNotFoundException e) {
@@ -41,7 +43,98 @@ public class TurismoTierraMedia {
 		sc.close();
 		
 		return usuarios;
+	}
+	
+	// OBTENGO LISTA DE ATRACCIONES DESDE ARCHIVO
+	
+	public static LinkedList<Atraccion> getAtracciones(String archivo){
+		LinkedList<Atraccion> atracciones = new LinkedList<Atraccion>();
+		Scanner sc = null;
 		
+		try {
+			sc = new Scanner(new File(archivo));
+			
+			while(sc.hasNext()) {
+				String linea = sc.nextLine();
+				String datos[] = linea.split(",");
+				
+				String nombre = datos[0];
+				int costo = Integer.parseInt(datos[1]);
+				double tiempo = Double.parseDouble(datos[2]);
+				int cupo = Integer.parseInt(datos[3]);
+				TipoAtraccion tipoatraccion = TipoAtraccion.valueOf(datos[4]);
+				
+				Atraccion atraccion = new Atraccion(nombre, costo, tiempo, cupo, tipoatraccion);
+				
+				if(!atracciones.contains(atraccion)) {
+					atracciones.add(atraccion);
+				}	
+			}
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		sc.close();
+		
+		return atracciones;
+	}
+	
+	//
+	
+	public static LinkedList<Promocion> getPromociones(String archivoPromociones, String archivoAtracciones){
+		LinkedList<Promocion> promociones = new LinkedList<Promocion>();
+		LinkedList<Atraccion> atraccionesTotales = getAtracciones(archivoAtracciones);
+		Scanner sc = null;
+		
+		try {
+			sc = new Scanner(new File(archivoPromociones));
+			
+			while(sc.hasNext()) {
+				String linea = sc.nextLine();
+				String datos[] = linea.split(",");
+				
+				String nombre = datos[0];
+				String[] nombresAtraccionesPromocion = datos[1].split(";");
+				TipoAtraccion tipoAtraccion = TipoAtraccion.valueOf(datos[2]);
+				TipoPromocion tipoPromocion = TipoPromocion.valueOf(datos[3]);
+				
+				Promocion promocion = null;
+				LinkedList<Atraccion> atraccionesPromocion = new LinkedList<Atraccion>();
+				
+				for(String nombreAtraccion : nombresAtraccionesPromocion) {
+					for(Atraccion atraccion : atraccionesTotales) {
+						if(atraccion.getNombre().equals(nombreAtraccion)) {
+							atraccionesPromocion.add(atraccion);
+							break;
+						}
+					}
+				}
+				
+				if(tipoPromocion.equals(TipoPromocion.PORCENTUAL)) {
+					double porcentajeDescuento = Double.parseDouble(datos[4]);
+					promocion = new PromocionPorcentual(nombre, atraccionesPromocion, tipoAtraccion, tipoPromocion, porcentajeDescuento);
+				}
+				
+				else if(tipoPromocion.equals(TipoPromocion.ABSOLUTA)) {
+					int costoFinal = Integer.parseInt(datos[4]);
+					promocion = new PromocionAbsoluta(nombre, atraccionesPromocion, tipoAtraccion, tipoPromocion, costoFinal);
+				}
+
+				else if(tipoPromocion.equals(TipoPromocion.AXB)) {
+					promocion = new PromocionAXB(nombre, atraccionesPromocion, tipoAtraccion, tipoPromocion);
+				}
+				
+				if(!promociones.contains(promocion)) {
+					promociones.add(promocion);
+				}	
+			}
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		sc.close();
+		
+		return promociones;
 	}
 	
 	public static void escribirUsuarios(LinkedList<Usuario> usuarios, String archivo) throws IOException {
@@ -54,8 +147,36 @@ public class TurismoTierraMedia {
 		
 	}
 	
+	public static void escribirAtracciones(LinkedList<Atraccion> atracciones, String archivo) throws IOException {
+		PrintWriter salida = new PrintWriter(new FileWriter(archivo));
+		
+		for (Atraccion atraccion : atracciones) {
+			salida.println(atraccion);
+		}
+		salida.close();
+		
+	}
+	
+	public static void escribirPromociones(LinkedList<Promocion> promociones, String archivo) throws IOException {
+		PrintWriter salida = new PrintWriter(new FileWriter(archivo));
+		
+		for (Promocion promocion : promociones) {
+			salida.println(promocion);
+		}
+		salida.close();
+		
+	}
+	
 	public static void main(String[] args) throws IOException {
-		escribirUsuarios(getUsuarios("usuarios.in"), "TestSalida.csv");
+		LinkedList<Usuario> usuarios = getUsuarios("usuarios.in");
+		LinkedList<Atraccion> atracciones = getAtracciones("atracciones.in");
+		LinkedList<Promocion> promociones = getPromociones("promociones.in", "atracciones.in");
+		
+		escribirUsuarios(usuarios, "usuarios.out");
+		escribirAtracciones(atracciones, "atracciones.out");
+		escribirPromociones(promociones, "promociones.out");
+		
+		
 	}
 	
 }

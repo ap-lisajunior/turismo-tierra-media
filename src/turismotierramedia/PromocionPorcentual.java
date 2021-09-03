@@ -3,21 +3,23 @@ package turismotierramedia;
 import java.util.LinkedList;
 
 public class PromocionPorcentual extends Promocion {
-
+	
 	private double porcentajeDescuento;
 
-	public PromocionPorcentual(String nombre, double tiempo, TipoAtraccion tipoatraccion, LinkedList<Atraccion> atracciones, double porcentajeDescuento) {
-		super(nombre, tiempo, tipoatraccion, atracciones);
+	public PromocionPorcentual(String nombre, LinkedList<Atraccion> atracciones, TipoAtraccion tipoAtraccion,
+			TipoPromocion tipoPromocion, double porcentajeDescuento) {
+		super(nombre, atracciones, tipoAtraccion);
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
-	
+
 	@Override
-	public void reduccionCostoTotal() {
-		double descuento = (int) (getCosto() * porcentajeDescuento);
-		double nuevoCosto = getCosto() - descuento;
-		super.setCosto((int) nuevoCosto);
+	public void calcularCostoFinal() {
+		int aux = 0;
+		for(Atraccion atraccion : atracciones) {
+			aux += atraccion.getCosto();
+		}
+		super.setCosto((int) (aux * this.porcentajeDescuento));
 	}
 
-	
 
 }
