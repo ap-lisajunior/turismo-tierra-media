@@ -35,8 +35,9 @@ public class TierraMedia {
 
 				Producto p = new Atraccion(nombre, costo, tiempo, cupo, tipoAtraccion);
 				
-				if (!productos.contains(p))
-				productos.add(p);
+				if (!productos.contains(p)) {
+					productos.add(p);
+				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -73,13 +74,13 @@ public class TierraMedia {
 	public static void escribirProductosOrdenadosPorCosto(List<Producto> productos) throws IOException {
 
 		ordenarProductosPorCosto(productos);
-		escribirProductos(productos, "productosxCosto");
+		escribirProductos(productos, "productosxCosto.out");
 	}
 
 	public static void escribirProductosOrdenadosPorTiempo(List<Producto> productos) throws IOException {
 
 		ordenarProductosPorTiempo(productos);
-		escribirProductos(productos, "productosxTiempo");
+		escribirProductos(productos, "productosxTiempo.out");
 	}
 
 	public static Map<TipoAtraccion, ArrayList<Producto>> agruparPorTipo(List<Producto> productos) {
