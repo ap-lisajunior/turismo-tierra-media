@@ -31,7 +31,7 @@ public abstract class Promocion extends Producto{
 	}
 
 	@Override
-	public boolean esUnaPromocion() {
+	public Boolean esUnaPromocion() {
 		return true;
 	}
 	

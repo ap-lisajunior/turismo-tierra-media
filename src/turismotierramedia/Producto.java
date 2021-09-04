@@ -16,11 +16,11 @@ public abstract class Producto {
 		return this.nombre;
 	}
 
-	protected int getCosto() {
+	protected Integer getCosto() {
 		return this.costo;
 	}
 
-	protected double getTiempo() {
+	protected Double getTiempo() {
 		return this.tiempo;
 	}
 	
@@ -28,7 +28,7 @@ public abstract class Producto {
 		return this.tipoAtraccion;
 	}
 	
-	abstract public boolean esUnaPromocion();
+	abstract public Boolean esUnaPromocion();
 
 	public void setCosto(int costoFinal){
 		this.costo = costoFinal;
