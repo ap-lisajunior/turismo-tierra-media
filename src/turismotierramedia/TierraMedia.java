@@ -59,6 +59,10 @@ public class TierraMedia {
 
 	}
 	
+	public static void ordenarTodo(List<Producto> lista) {
+		Collections.sort(lista, new Ordenar());
+	}
+	
 	public static void ordenarProductosPorCosto(List<Producto> lista) {
 		Collections.sort(lista, new CostoComparator());
 	}
