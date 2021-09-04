@@ -33,7 +33,7 @@ public class TierraMediaTest {
 	@Test
 	public void queSonIgualesSiTienenElMismoNombre() {
 		Producto p1 = new Atraccion("Moria",10,2,6,TipoAtraccion.AVENTURA);
-		Producto p2 = new Atraccion("Moria",5,2.5,25,TipoAtraccion.PAISAJE);
+		Producto p2 = new Atraccion("Moria",2,5,8,TipoAtraccion.PAISAJE);
 		
 		assertEquals(p1, p2);
 	}
@@ -45,5 +45,41 @@ public class TierraMediaTest {
 		
 		assertNotEquals(p1, p2);
 	}
+	
+	@Test
+	public void queOrdenaSegunTiempoMayor() {
+		Producto p1 = new Atraccion("Bosque Negro",3,4,12,TipoAtraccion.AVENTURA);
+		Producto p2 = new Atraccion("Erebor",12,3,32,TipoAtraccion.PAISAJE);
+		Producto p3 = new Atraccion("Lothlórien",35,1,30,TipoAtraccion.DEGUSTACION);
+		Producto p4 = new Atraccion("Abismo de Helm",5,2,15,TipoAtraccion.PAISAJE);
+		
+		LinkedList<Producto> productos = new LinkedList<Producto>();
+		productos.add(p1);
+		productos.add(p2);
+		productos.add(p3);
+		productos.add(p4);
+		
+		TierraMedia.ordenarProductosPorTiempo(productos);
+		
+		assertEquals(p1, productos.get(0));
+		assertEquals(p2, productos.get(1));
+		assertEquals(p4, productos.get(2));
+		assertEquals(p3, productos.get(3));
+		
+	}
+	
+	@Test
+	public void seCreaUnNuevoProducto() {
+		Producto p1 = new Atraccion("Bosque Negro",3,4,12,TipoAtraccion.AVENTURA);
+		
+		assertNotNull(p1);
+		
+		
+	}
+	
+	
+	
+	
+	
 
 }
