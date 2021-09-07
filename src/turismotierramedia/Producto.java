@@ -6,6 +6,7 @@ public abstract class Producto {
 	private int costo;
 	private double tiempo;
 	TipoAtraccion tipoAtraccion;
+	private Boolean ofrecido = false;
 	
 	public Producto(String nombre, TipoAtraccion tipoAtraccion) {
 		this.nombre = nombre;
@@ -27,6 +28,16 @@ public abstract class Producto {
 	protected TipoAtraccion getTipoAtraccion() {
 		return this.tipoAtraccion;
 	}
+	
+	protected void setOfrecido(Boolean estado) {
+		this.ofrecido = estado;
+	}
+	
+	protected Boolean fueOfrecido() {
+		return this.ofrecido;
+	}
+	
+	abstract public Boolean tieneCupo();
 	
 	abstract public Boolean esUnaPromocion();
 

@@ -22,6 +22,14 @@ public class Usuario {
 		return presupuesto;
 	}
 
+	protected void setPresupuesto(int presupuesto) {
+		this.presupuesto = presupuesto;
+	}
+
+	protected void setTiempo(double tiempo) {
+		this.tiempo = tiempo;
+	}
+
 	protected double getTiempo() {
 		return tiempo;
 	}
@@ -29,10 +37,15 @@ public class Usuario {
 	protected TipoAtraccion getTipoAtraccion() {
 		return tipoAtraccion;
 	}
-
+	
+	protected void aceptarOferta(Producto producto) {
+		this.setPresupuesto(this.getPresupuesto() - producto.getCosto());
+		this.setTiempo(this.getTiempo() - producto.getTiempo());
+	}
+	
 	@Override
 	public String toString() {
-		return "Nombre de usuario: " + this.getNombre() + "; Presupuesto: " + this.getPresupuesto() + "; Tiempo disponible: " + this.getTiempo() + "; Tipo de atraccion preferida: "
+		return "Nombre de usuario: " + this.getNombre() + ", Tipo de atraccion preferida: "
 				+ this.getTipoAtraccion().getDescripcion();
 	}
 	

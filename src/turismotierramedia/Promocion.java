@@ -29,6 +29,16 @@ public abstract class Promocion extends Producto{
 	protected LinkedList<Atraccion> getAtracciones() {
 		return atracciones;
 	}
+	
+	@Override
+	public Boolean tieneCupo() {
+		for(Atraccion atraccion : atracciones) {
+			if(atraccion.getCupo() == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	@Override
 	public Boolean esUnaPromocion() {

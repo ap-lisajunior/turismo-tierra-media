@@ -4,10 +4,20 @@ import java.util.Comparator;
 
 public class Ordenar implements Comparator<Producto> {
 
+	private TipoAtraccion tipoAtraccionUsuario;
+	
+	public Ordenar(TipoAtraccion tipoAtraccion) {
+		this.tipoAtraccionUsuario = tipoAtraccion;
+	}
+	
 	@Override
 	public int compare(Producto producto, Producto otroProducto) {
 		int aux;
 		aux = -producto.esUnaPromocion().compareTo(otroProducto.esUnaPromocion());
+		if(aux == 0) {
+			aux = producto.getTipoAtraccion().equals(tipoAtraccionUsuario) && !otroProducto.getTipoAtraccion().equals(tipoAtraccionUsuario) ? -1 
+					: !producto.getTipoAtraccion().equals(tipoAtraccionUsuario) && otroProducto.getTipoAtraccion().equals(tipoAtraccionUsuario) ? 1 : 0;
+		}
 		if(aux == 0) {
 			aux = -producto.getCosto().compareTo(otroProducto.getCosto());
 		} if (aux == 0) {

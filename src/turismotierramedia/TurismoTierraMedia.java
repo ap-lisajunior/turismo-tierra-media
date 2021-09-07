@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 public class TurismoTierraMedia {
@@ -21,12 +20,11 @@ public class TurismoTierraMedia {
 	
 	// OBTENGO LISTA DE USUARIOS DESDE ARCHIVO
 	
-	public static LinkedList<Usuario> getUsuarios(String archivo){
-		
+	public static LinkedList<Usuario> getUsuarios(){
 		Scanner sc = null;
 		
 		try {
-			sc = new Scanner(new File(archivo));
+			sc = new Scanner(new File("entrada/usuarios.in"));
 			
 			while(sc.hasNext()) {
 				String linea = sc.nextLine();
@@ -55,12 +53,12 @@ public class TurismoTierraMedia {
 	
 	// OBTENGO LISTA DE ATRACCIONES DESDE ARCHIVO
 	
-	public static LinkedList<Producto> getAtracciones(String archivo){
+	public static LinkedList<Producto> getAtracciones(){
 		
 		Scanner sc = null;
 		
 		try {
-			sc = new Scanner(new File(archivo));
+			sc = new Scanner(new File("entrada/atracciones.in"));
 			
 			while(sc.hasNext()) {
 				String linea = sc.nextLine();
@@ -89,13 +87,13 @@ public class TurismoTierraMedia {
 	
 	// OBTENGO LISTA DE PROMOCIONES DESDE ARCHIVO
 	
-	public static LinkedList<Producto> getPromociones(String archivo){
+	public static LinkedList<Producto> getPromociones(){
 		
 		//LinkedList<Atraccion> atraccionesTotales = getAtracciones(archivoAtracciones);
 		Scanner sc = null;
 		
 		try {
-			sc = new Scanner(new File(archivo));
+			sc = new Scanner(new File("entrada/promociones.in"));
 			
 			while(sc.hasNext()) {
 				String linea = sc.nextLine();
@@ -147,71 +145,47 @@ public class TurismoTierraMedia {
 	}
 	
 	
-	public static void ordenarProductos(LinkedList<Producto> lista) {
-		Collections.sort(lista, new Ordenar());
+	// CREO LISTA DE PRODUCTOS TOTALES
+	
+	public static LinkedList<Producto> getProductos() {
+		LinkedList<Producto> productos = new LinkedList<Producto>();
+		productos.addAll(getAtracciones());
+		productos.addAll(getPromociones());
+		return productos;
 	}
 	
-	public static void escribirProductos(LinkedList<Producto> productos, String archivo) throws IOException {
-
-		PrintWriter salida = new PrintWriter(new FileWriter(archivo));
-
-		for (Producto producto : productos) {
-			salida.println(producto);
-		}
-		salida.close();
-
+	// METODO PARA CHEQUEAR SI EL USUARIO PUEDE COMPRAR EL PRODUCTO OFRECIDO
+	
+	public static boolean usuarioPuedeComprar(Usuario usuario, Producto producto) {
+		return usuario.getPresupuesto() >= producto.getCosto() 
+				&& usuario.getTiempo() >= producto.getTiempo();
 	}
 	
+	// METODO PARA ORDENAR LOS PRODUCTOS EN BASE A LA CONSIGNA DADA
+	
+	public static void ordenarProductos(LinkedList<Producto> productos, TipoAtraccion tipoAtraccionPreferida) {
+		Collections.sort(productos, new Ordenar(tipoAtraccionPreferida));
+	}
+	
+
 	// ESCRITURA DE ARCHIVOS DE SALIDA
 	
-	public static void escribirUsuarios(LinkedList<Usuario> usuarios, String archivo) throws IOException {
+	public static void escribirItinerarioPorUsuario(Usuario usuario, Itinerario itinerario, String archivo) throws IOException {
 		PrintWriter salida = new PrintWriter(new FileWriter(archivo));
 		
-		for (Usuario usuario : usuarios) {
-			salida.println(usuario);
-		}
+		salida.println("Datos de usuario: ");
+		salida.println(usuario);
+		salida.println(itinerario);
+		
 		salida.close();
-		
-	}
-	
-	public static void escribirAtracciones(LinkedList<Atraccion> atracciones, String archivo) throws IOException {
-		PrintWriter salida = new PrintWriter(new FileWriter(archivo));
-		
-		for (Atraccion atraccion : atracciones) {
-			salida.println(atraccion);
-		}
-		salida.close();
-		
-	}
-	
-	public static void escribirPromociones(LinkedList<Promocion> promociones, String archivo) throws IOException {
-		PrintWriter salida = new PrintWriter(new FileWriter(archivo));
-		
-		for (Promocion promocion : promociones) {
-			salida.println(promocion);
-		}
-		salida.close();
-		
 	}
 	
 	// METODO MAIN
 	
 	public static void main(String[] args) throws IOException {
-		LinkedList<Usuario> usuarios = getUsuarios("usuarios.in");
-		LinkedList<Producto> atracciones = getAtracciones("atracciones.in");
-		LinkedList<Producto> promociones = getPromociones("promociones.in");
-		// "MERGE" DE LISTAS DE ATRACCIONES Y PROMOCIONES EN UNA SOLA LISTA DE PRODUCTOS (SE AGREGA PROMOCIONES A LA LISTA DE ATRACCIONES)
-		atracciones.addAll(promociones);
-		LinkedList<Producto> productos = atracciones;
-		
-		ordenarProductos(productos);
-		escribirProductos(productos, "productos.out");
-		
-//		escribirUsuarios(usuarios, "usuarios.out");
-//		escribirAtracciones(atracciones, "atracciones.out");
-//		escribirPromociones(promociones, "promociones.out");
-		
+
+		Consola.ejecutarPrograma();
 		
 	}
-	
+
 }

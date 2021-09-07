@@ -27,11 +27,18 @@ public class Atraccion extends Producto {
 
 
 	@Override
+	public Boolean tieneCupo() {
+		return this.cupo > 0;
+	}		
+	
+
+	@Override
 	public String toString() {
 		return "Nombre atraccion: " + this.getNombre() + "; Cupo de atracción: " 
 				+ this.getCupo() + "; Costo de atraccion: " + this.getCosto() + "; Tiempo de atraccion: "
 				+ this.getTiempo() + "; Tipo de atraccion: " + this.getTipoAtraccion().getDescripcion();
-	}		
-	
+	}
+
+
 	
 }
