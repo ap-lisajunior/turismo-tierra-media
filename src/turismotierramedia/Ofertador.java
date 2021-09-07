@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Consola {
+public class Ofertador {
 
-	public static void ejecutarPrograma() throws IOException {
+	public static void sugerirItineriario() throws IOException {
 		
 		LinkedList<Usuario> usuarios = TurismoTierraMedia.getUsuarios();
 		LinkedList<Producto> productos = TurismoTierraMedia.getProductos();

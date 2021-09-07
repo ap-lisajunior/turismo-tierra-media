@@ -177,7 +177,7 @@ public class TurismoTierraMedia {
 	
 	public static void main(String[] args) throws IOException {
 
-		Consola.ejecutarPrograma();
+		Ofertador.sugerirItineriario();
 		
 	}
 
