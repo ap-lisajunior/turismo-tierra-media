@@ -22,5 +22,4 @@ public class PromocionPorcentual extends Promocion {
 		super.setCosto((int) (aux - aux * this.porcentajeDescuento));
 	}
 
-
 }

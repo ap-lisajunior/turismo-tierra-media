@@ -5,21 +5,24 @@ import java.util.stream.Collectors;
 
 public class Itinerario {
 
-	private LinkedList<Atraccion> atracciones = new LinkedList<Atraccion>();
-	private LinkedList<Promocion> promociones = new LinkedList<Promocion>();
+	private LinkedList<Producto> atracciones = new LinkedList<Producto>();
+	private LinkedList<Producto> promociones = new LinkedList<Producto>();
 	private Integer costo = 0;
 	private Double tiempo = 0.0;
 
-	protected LinkedList<Atraccion> getAtracciones() {
+	protected LinkedList<Producto> getAtracciones() {
 		return atracciones;
 	}
-
-	protected void agregarAtraccion(Atraccion atraccion) {
-		atracciones.add(atraccion);
-	}
 	
-	public void agregarPromocion(Promocion promocion) {
-		promociones.add(promocion);
+	protected void agregarProducto(Producto producto) {
+		if(producto.esUnaPromocion()) {
+			promociones.add(producto);
+			for(Producto atraccion : promociones.getLast().getAtracciones()) {
+				atracciones.add(atraccion);
+			}
+		} else {
+			atracciones.add(producto);
+		}
 	}
 
 	protected Integer getCosto() {
@@ -40,7 +43,7 @@ public class Itinerario {
 
 	@Override
 	public String toString() {
-		return "Resumen de su itinerario: \n" + "Atracciones a visitar: " + this.atracciones.stream().map(Atraccion::getNombre).collect(Collectors.toList()) + "; Costo total: " + this.costo + "; Tiempo duracion total: " + tiempo;
+		return "Resumen de su itinerario: \n" + "Atracciones a visitar: " + this.atracciones.stream().map(Producto::getNombre).collect(Collectors.toList()) + "; Costo total: " + this.costo + "; Tiempo duracion total: " + tiempo;
 	}
 
 

@@ -1,5 +1,7 @@
 package turismotierramedia;
 
+import java.util.LinkedList;
+
 public class Atraccion extends Producto {
 
 	private int cupo;
@@ -16,6 +18,7 @@ public class Atraccion extends Producto {
 		return this.cupo;
 	}
 	
+	@Override
 	public void reducirCupo() {
 		this.cupo--;
 	}
@@ -31,6 +34,12 @@ public class Atraccion extends Producto {
 		return this.cupo > 0;
 	}		
 	
+	@Override
+	public void setOfrecido(Boolean estado) {
+		super.ofrecido = estado;
+	}
+
+	
 
 	@Override
 	public String toString() {
@@ -38,6 +47,14 @@ public class Atraccion extends Producto {
 				+ this.getCupo() + "; Costo de atraccion: " + this.getCosto() + "; Tiempo de atraccion: "
 				+ this.getTiempo() + "; Tipo de atraccion: " + this.getTipoAtraccion().getDescripcion();
 	}
+
+
+	@Override
+	public LinkedList<Atraccion> getAtracciones() {
+		return null;
+	}
+
+
 
 
 	

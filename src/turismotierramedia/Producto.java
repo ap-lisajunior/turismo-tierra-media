@@ -1,12 +1,14 @@
 package turismotierramedia;
 
+import java.util.LinkedList;
+
 public abstract class Producto {
 	
 	private String nombre;
 	private int costo;
 	private double tiempo;
 	TipoAtraccion tipoAtraccion;
-	private Boolean ofrecido = false;
+	protected Boolean ofrecido = false;
 	
 	public Producto(String nombre, TipoAtraccion tipoAtraccion) {
 		this.nombre = nombre;
@@ -28,19 +30,21 @@ public abstract class Producto {
 	protected TipoAtraccion getTipoAtraccion() {
 		return this.tipoAtraccion;
 	}
-	
-	protected void setOfrecido(Boolean estado) {
-		this.ofrecido = estado;
-	}
-	
+
 	protected Boolean fueOfrecido() {
 		return this.ofrecido;
 	}
+	
+	abstract public void setOfrecido(Boolean estado);
+	
+	abstract public void reducirCupo();
 	
 	abstract public Boolean tieneCupo();
 	
 	abstract public Boolean esUnaPromocion();
 
+	abstract public LinkedList<Atraccion> getAtracciones();
+	
 	public void setCosto(int costoFinal){
 		this.costo = costoFinal;
 	}

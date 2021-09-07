@@ -26,7 +26,8 @@ public abstract class Promocion extends Producto{
 		super.setTiempo(aux);
 	}
 	
-	protected LinkedList<Atraccion> getAtracciones() {
+	@Override
+	public LinkedList<Atraccion> getAtracciones() {
 		return atracciones;
 	}
 	
@@ -38,6 +39,21 @@ public abstract class Promocion extends Producto{
 			}
 		}
 		return true;
+	}
+	
+	@Override
+	public void reducirCupo() {
+		for(Atraccion atraccion : atracciones) {
+			atraccion.reducirCupo();
+		}
+	}
+	
+	@Override
+	public void setOfrecido(Boolean estado) {
+		for (Atraccion atraccion : atracciones) {
+			atraccion.ofrecido = estado;
+		}
+		this.ofrecido = estado;
 	}
 
 	@Override

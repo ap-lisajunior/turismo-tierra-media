@@ -38,6 +38,11 @@ public class Usuario {
 		return tipoAtraccion;
 	}
 	
+	protected boolean puedeComprar(Producto producto) {
+		return this.getPresupuesto() >= producto.getCosto() 
+				&& this.getTiempo() >= producto.getTiempo();
+	}
+	
 	protected void aceptarOferta(Producto producto) {
 		this.setPresupuesto(this.getPresupuesto() - producto.getCosto());
 		this.setTiempo(this.getTiempo() - producto.getTiempo());

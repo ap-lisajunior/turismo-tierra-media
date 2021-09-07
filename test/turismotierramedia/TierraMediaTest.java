@@ -21,7 +21,7 @@ public class TierraMediaTest {
 		productos.add(p3);
 		productos.add(p4);
 		
-		TierraMedia.ordenarProductosPorCosto(productos);
+		TurismoTierraMedia.ordenarProductosPorCosto(productos);
 		
 		assertEquals(p4, productos.get(0));
 		assertEquals(p1, productos.get(1));

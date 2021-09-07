@@ -154,13 +154,6 @@ public class TurismoTierraMedia {
 		return productos;
 	}
 	
-	// METODO PARA CHEQUEAR SI EL USUARIO PUEDE COMPRAR EL PRODUCTO OFRECIDO
-	
-	public static boolean usuarioPuedeComprar(Usuario usuario, Producto producto) {
-		return usuario.getPresupuesto() >= producto.getCosto() 
-				&& usuario.getTiempo() >= producto.getTiempo();
-	}
-	
 	// METODO PARA ORDENAR LOS PRODUCTOS EN BASE A LA CONSIGNA DADA
 	
 	public static void ordenarProductos(LinkedList<Producto> productos, TipoAtraccion tipoAtraccionPreferida) {

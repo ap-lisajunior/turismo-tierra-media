@@ -19,10 +19,11 @@ public class Consola {
 			itinerario = new Itinerario();
 			System.out.println("\nBienvenido/a " + usuario.getNombre() + " al sistema de Turismo en la Tierra Media");
 			System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+			
 			for (Producto producto : productos) {
-				if (TurismoTierraMedia.usuarioPuedeComprar(usuario, producto) && producto.tieneCupo()
+				
+				if (usuario.puedeComprar(producto) && producto.tieneCupo()
 						&& !producto.fueOfrecido()) {
-
 					System.out.println("¿Desea usted comprar: " + producto + "?");
 					System.out.println("Escriba 'si' o 'no' y luego presione Enter para continuar.");
 					String eleccion = input.nextLine();
@@ -32,37 +33,28 @@ public class Consola {
 						eleccion = input.nextLine();
 					}
 					if (eleccion.equalsIgnoreCase("si")) {
-						if (producto.esUnaPromocion()) {
-							for (Atraccion atraccion : ((Promocion) producto).getAtracciones()) {
-								atraccion.reducirCupo();
-								atraccion.setOfrecido(true);
-								itinerario.agregarAtraccion(atraccion);
-							}
-							((Promocion) producto).setOfrecido(true);
-							itinerario.agregarPromocion((Promocion) producto);
-							itinerario.setCosto(producto.getCosto());
-							itinerario.setTiempo(producto.getTiempo());
-						} else {
-							((Atraccion) producto).reducirCupo();
-							((Atraccion) producto).setOfrecido(true);
-							itinerario.agregarAtraccion((Atraccion) producto);
-							itinerario.setCosto(producto.getCosto());
-							itinerario.setTiempo(producto.getTiempo());
-						}
+						producto.setOfrecido(true);
+						producto.reducirCupo();
+						itinerario.agregarProducto(producto);
+						itinerario.setCosto(producto.getCosto());
+						itinerario.setTiempo(producto.getTiempo());
 						usuario.aceptarOferta(producto);
-
 						System.out.println("Usted ha comprado: " + producto.getNombre() + " a un precio de "
 								+ producto.getCosto() + " monedas.\n");
+						}
+					else {
+						System.out.println("Usted no ha comprado este producto. Siguiente oferta: \n");
+					}
 					}
 
-					if (itinerario.getAtracciones().isEmpty() && itinerario.getAtracciones().isEmpty()) {
-						System.out.println("Usted no ha comprado ninguna promocion o acceso a atraccion");
-					}
-				}
 			}
-			if (!itinerario.getAtracciones().isEmpty() && !itinerario.getAtracciones().isEmpty()) {
+			if (itinerario.getAtracciones().isEmpty()) {
+				System.out.println("Usted no ha comprado ninguna promocion o acceso a atraccion\n");
+			}
+			else if (!itinerario.getAtracciones().isEmpty()) {
 				System.out.println(itinerario);
 			}
+			
 			// SE SETEAN NUEVAMENTE LOS PRODUCTOS AL ESTADO SIN OFRECER ORIGINAL
 			for(Producto producto : productos) {
 				if(producto.fueOfrecido()) {
