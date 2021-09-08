@@ -19,7 +19,7 @@ public class PromocionAxBTest {
 		packPaisa.add(abismoDeHelm);
 		packPaisa.add(erebor);
 		
-		Producto packPaisajes = new PromocionAxB("Pack Paisajes", packPaisa, TipoAtraccion.PAISAJE, TipoPromocion.AXB);
+		Producto packPaisajes = new PromocionAxB("Pack Paisajes", packPaisa, TipoAtraccion.PAISAJE);
 		
 		assertNotNull(packPaisajes);
 	}
@@ -35,12 +35,11 @@ public class PromocionAxBTest {
 		packPaisa.add(abismoDeHelm);
 		packPaisa.add(erebor);
 		
-		Producto packPaisajes = new PromocionAxB("Pack Paisajes", packPaisa, TipoAtraccion.PAISAJE, TipoPromocion.AXB);
+		Producto packPaisajes = new PromocionAxB("Pack Paisajes", packPaisa, TipoAtraccion.PAISAJE);
 		
 		assertEquals("Pack Paisajes", packPaisajes.getNombre());
 		assertEquals(packPaisa, packPaisajes.getAtracciones());
 		assertEquals(TipoAtraccion.PAISAJE, packPaisajes.getTipoAtraccion());
-		assertEquals(TipoPromocion.AXB, packPaisajes.getTipoPromocion());
 		
 	}
 	
@@ -55,7 +54,7 @@ public class PromocionAxBTest {
 		packPaisa.add(abismoDeHelm);
 		packPaisa.add(erebor);
 		
-		Producto packPaisajes = new PromocionAxB("Pack Paisajes", packPaisa, TipoAtraccion.PAISAJE, TipoPromocion.AXB);
+		Producto packPaisajes = new PromocionAxB("Pack Paisajes", packPaisa, TipoAtraccion.PAISAJE);
 		
 		assertTrue(packPaisajes.esUnaPromocion());
 	}
@@ -71,7 +70,7 @@ public class PromocionAxBTest {
 		packPaisa.add(abismoDeHelm);
 		packPaisa.add(erebor);
 		
-		Producto packPaisajes = new PromocionAxB("Pack Paisajes", packPaisa, TipoAtraccion.PAISAJE, TipoPromocion.AXB);
+		Producto packPaisajes = new PromocionAxB("Pack Paisajes", packPaisa, TipoAtraccion.PAISAJE);
 		
 		packPaisajes.reducirCupo();
 		
@@ -91,7 +90,7 @@ public class PromocionAxBTest {
 		packPaisa.add(abismoDeHelm);
 		packPaisa.add(erebor);
 		
-		Producto packPaisajes = new PromocionAxB("Pack Paisajes", packPaisa, TipoAtraccion.PAISAJE, TipoPromocion.AXB);
+		Producto packPaisajes = new PromocionAxB("Pack Paisajes", packPaisa, TipoAtraccion.PAISAJE);
 		
 		assertEquals(Integer.valueOf(10), packPaisajes.getCosto());
 		

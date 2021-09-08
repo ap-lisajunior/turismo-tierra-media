@@ -119,16 +119,16 @@ public class TurismoTierraMedia {
 				
 				if(tipoPromocion.equals(TipoPromocion.PORCENTUAL)) {
 					double porcentajeDescuento = Double.parseDouble(datos[4]);
-					promocion = new PromocionPorcentual(nombre, atraccionesPromocion, tipoAtraccion, tipoPromocion, porcentajeDescuento);
+					promocion = new PromocionPorcentual(nombre, atraccionesPromocion, tipoAtraccion, porcentajeDescuento);
 				}
 				
 				else if(tipoPromocion.equals(TipoPromocion.ABSOLUTA)) {
 					int costoFinal = Integer.parseInt(datos[4]);
-					promocion = new PromocionAbsoluta(nombre, atraccionesPromocion, tipoAtraccion, tipoPromocion, costoFinal);
+					promocion = new PromocionAbsoluta(nombre, atraccionesPromocion, tipoAtraccion, costoFinal);
 				}
 
 				else if(tipoPromocion.equals(TipoPromocion.AXB)) {
-					promocion = new PromocionAxB(nombre, atraccionesPromocion, tipoAtraccion, tipoPromocion);
+					promocion = new PromocionAxB(nombre, atraccionesPromocion, tipoAtraccion);
 				}
 				
 				if(!promociones.contains(promocion)) {

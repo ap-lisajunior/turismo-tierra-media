@@ -17,7 +17,7 @@ public class PromocionAbsolutaTest {
 		packD.add(lothlórien);
 		packD.add(laComarca);
 		
-		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION, TipoPromocion.ABSOLUTA,36);
+		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION,36);
 		
 		assertNotNull(packDegustacion);
 		
@@ -32,12 +32,11 @@ public class PromocionAbsolutaTest {
 		packD.add(lothlórien);
 		packD.add(laComarca);
 		
-		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION, TipoPromocion.ABSOLUTA,36);
+		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION,36);
 		
 		assertEquals("Pack Degustación", packDegustacion.getNombre());
 		assertEquals(packD, packDegustacion.getAtracciones());
 		assertEquals(TipoAtraccion.DEGUSTACION, packDegustacion.getTipoAtraccion());
-		assertEquals(TipoPromocion.ABSOLUTA, packDegustacion.getTipoPromocion());
 		assertEquals(Integer.valueOf(36), packDegustacion.getCosto());
 	}
 	
@@ -50,7 +49,7 @@ public class PromocionAbsolutaTest {
 		packD.add(lothlórien);
 		packD.add(laComarca);
 		
-		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION, TipoPromocion.ABSOLUTA,36);
+		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION,36);
 		
 		assertTrue(packDegustacion.esUnaPromocion());
 	}
@@ -64,7 +63,7 @@ public class PromocionAbsolutaTest {
 		packD.add(lothlórien);
 		packD.add(laComarca);
 		
-		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION, TipoPromocion.ABSOLUTA,36);
+		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION,36);
 		
 		packDegustacion.reducirCupo();
 		

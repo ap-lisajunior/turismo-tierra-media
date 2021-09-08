@@ -6,8 +6,7 @@ public class PromocionPorcentual extends Promocion {
 	
 	private double porcentajeDescuento;
 
-	public PromocionPorcentual(String nombre, LinkedList<Atraccion> atracciones, TipoAtraccion tipoAtraccion,
-			TipoPromocion tipoPromocion, double porcentajeDescuento) {
+	public PromocionPorcentual(String nombre, LinkedList<Atraccion> atracciones, TipoAtraccion tipoAtraccion, double porcentajeDescuento) {
 		super(nombre, atracciones, tipoAtraccion);
 		this.porcentajeDescuento = porcentajeDescuento;
 		calcularCostoFinal();

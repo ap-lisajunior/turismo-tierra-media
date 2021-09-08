@@ -17,7 +17,7 @@ public class PromocionPorcentualTest {
 		packAven.add(bosqueNegro);
 		packAven.add(mordor);
 		
-		Producto packAventura = new PromocionPorcentual("Pack Aventura", packAven, TipoAtraccion.AVENTURA, TipoPromocion.PORCENTUAL, 20);
+		Producto packAventura = new PromocionPorcentual("Pack Aventura", packAven, TipoAtraccion.AVENTURA, 20);
 		
 		assertNotNull(packAventura);
 		
@@ -32,7 +32,7 @@ public class PromocionPorcentualTest {
 		packAven.add(bosqueNegro);
 		packAven.add(mordor);
 		
-		Producto packAventura = new PromocionPorcentual("Pack Aventura", packAven, TipoAtraccion.AVENTURA, TipoPromocion.PORCENTUAL, 20);
+		Producto packAventura = new PromocionPorcentual("Pack Aventura", packAven, TipoAtraccion.AVENTURA, 20);
 		
 		assertTrue(packAventura.esUnaPromocion());
 		
@@ -47,7 +47,7 @@ public class PromocionPorcentualTest {
 		packAven.add(bosqueNegro);
 		packAven.add(mordor);
 		
-		Producto packAventura = new PromocionPorcentual("Pack Aventura", packAven, TipoAtraccion.AVENTURA, TipoPromocion.PORCENTUAL, 20);
+		Producto packAventura = new PromocionPorcentual("Pack Aventura", packAven, TipoAtraccion.AVENTURA, 20);
 		
 		packAventura.reducirCupo();
 		
@@ -65,7 +65,7 @@ public class PromocionPorcentualTest {
 		packAven.add(bosqueNegro);
 		packAven.add(mordor);
 		
-		Producto packAventura = new PromocionPorcentual("Pack Aventura", packAven, TipoAtraccion.AVENTURA, TipoPromocion.PORCENTUAL, 0.2);
+		Producto packAventura = new PromocionPorcentual("Pack Aventura", packAven, TipoAtraccion.AVENTURA, 0.2);
 		
 		assertEquals(Integer.valueOf((int) 22.4), packAventura.getCosto());
 	}

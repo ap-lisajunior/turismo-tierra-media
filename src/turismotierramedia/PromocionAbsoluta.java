@@ -6,8 +6,7 @@ public class PromocionAbsoluta extends Promocion {
 	
 	private int costoFinal;
 
-	public PromocionAbsoluta(String nombre, LinkedList<Atraccion> atracciones, TipoAtraccion tipoAtraccion,
-			TipoPromocion tipoPromocion, int costoFinal) {
+	public PromocionAbsoluta(String nombre, LinkedList<Atraccion> atracciones, TipoAtraccion tipoAtraccion, int costoFinal) {
 		super(nombre, atracciones, tipoAtraccion);
 		this.costoFinal = costoFinal;
 		calcularCostoFinal();

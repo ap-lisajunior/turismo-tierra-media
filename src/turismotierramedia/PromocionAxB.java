@@ -6,8 +6,7 @@ public class PromocionAxB extends Promocion {
 	
 	private Atraccion bonificada;
 
-	public PromocionAxB(String nombre, LinkedList<Atraccion> atracciones, TipoAtraccion tipoAtraccion,
-			TipoPromocion tipoPromocion) {
+	public PromocionAxB(String nombre, LinkedList<Atraccion> atracciones, TipoAtraccion tipoAtraccion) {
 		super(nombre, atracciones, tipoAtraccion);
 		this.bonificada = atracciones.getLast();
 		calcularCostoFinal();
