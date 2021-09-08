@@ -59,5 +59,30 @@ public class AtraccionTest {
 		
 		
 	}
+	
+	@Test
+	public void queNoEsUnaPromocion() {
+		Atraccion p1 = new Atraccion("Moria",10,2,6,TipoAtraccion.AVENTURA);
+		
+		assertFalse(p1.esUnaPromocion());
+	}
+	
+	@Test
+	public void queTieneCupoAlInicializarse() {
+		Atraccion p1 = new Atraccion("Moria",10,2,6,TipoAtraccion.AVENTURA);
+		
+		assertTrue(p1.tieneCupo());
+	}
+	
+	@Test
+	public void queReduceCupo() {
+		Atraccion p1 = new Atraccion("Moria",10,2,6,TipoAtraccion.AVENTURA);
+		
+		p1.reducirCupo();
+		
+		assertEquals(5, p1.getCupo());
+	}
+	
+	
 
 }
