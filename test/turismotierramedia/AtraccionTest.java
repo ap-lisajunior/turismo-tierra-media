@@ -46,5 +46,18 @@ public class AtraccionTest {
 		
 		assertNotEquals(p1, p2);
 	}
+	
+	@Test
+	public void queSeCreaConValoresDeParametroCorrectos() {
+		Atraccion p1 = new Atraccion("Moria",10,2,6,TipoAtraccion.AVENTURA);
+		
+		assertEquals("Moria", p1.getNombre());
+		assertEquals(Integer.valueOf(10), p1.getCosto());
+		assertEquals(Double.valueOf(2), p1.getTiempo());
+		assertEquals(6, p1.getCupo());
+		assertEquals(TipoAtraccion.AVENTURA, p1.tipoAtraccion);
+		
+		
+	}
 
 }
