@@ -11,7 +11,7 @@ public enum TipoAtraccion {
 		this.descripcion = descripcion;
 	}
 	
-	public String getDescripcion() {
+	protected String getDescripcion() {
 		return this.descripcion;
 	}
 }

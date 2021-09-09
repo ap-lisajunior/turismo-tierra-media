@@ -19,24 +19,24 @@ public class Atraccion extends Producto {
 	}
 	
 	@Override
-	public void reducirCupo() {
+	protected void reducirCupo() {
 		this.cupo--;
 	}
 
 	@Override
-	public Boolean esUnaPromocion() {
+	protected Boolean esUnaPromocion() {
 		return false;
 	}
 
 
 	@Override
-	public Boolean tieneCupo() {
+	protected Boolean tieneCupo() {
 		return this.cupo > 0;
 	}		
 	
 	@Override
-	public void setOfrecido(Boolean estado) {
-		super.ofrecido = estado;
+	public void setComprado(Boolean estado) {
+		super.comprado = estado;
 	}
 
 	

@@ -16,9 +16,9 @@ public abstract class Promocion extends Producto{
 		calcularTiempoTotal();
 	}
 	
-	abstract public void calcularCostoFinal();
+	abstract protected void calcularCostoFinal();
 	
-	public void calcularTiempoTotal() {
+	protected void calcularTiempoTotal() {
 		double aux = 0;
 		for(Atraccion atraccion : atracciones) {
 			aux += atraccion.getTiempo();
@@ -27,12 +27,12 @@ public abstract class Promocion extends Producto{
 	}
 	
 	@Override
-	public LinkedList<Atraccion> getAtracciones() {
+	protected LinkedList<Atraccion> getAtracciones() {
 		return atracciones;
 	}
 	
 	@Override
-	public Boolean tieneCupo() {
+	protected Boolean tieneCupo() {
 		for(Atraccion atraccion : atracciones) {
 			if(atraccion.getCupo() == 0) {
 				return false;
@@ -42,22 +42,22 @@ public abstract class Promocion extends Producto{
 	}
 	
 	@Override
-	public void reducirCupo() {
+	protected void reducirCupo() {
 		for(Atraccion atraccion : atracciones) {
 			atraccion.reducirCupo();
 		}
 	}
 	
 	@Override
-	public void setOfrecido(Boolean estado) {
+	protected void setComprado(Boolean estado) {
 		for (Atraccion atraccion : atracciones) {
-			atraccion.ofrecido = estado;
+			atraccion.comprado = estado;
 		}
-		this.ofrecido = estado;
+		this.comprado = estado;
 	}
 
 	@Override
-	public Boolean esUnaPromocion() {
+	protected Boolean esUnaPromocion() {
 		return true;
 	}
 	

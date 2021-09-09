@@ -8,7 +8,7 @@ public abstract class Producto {
 	private int costo;
 	private double tiempo;
 	TipoAtraccion tipoAtraccion;
-	protected Boolean ofrecido = false;
+	protected Boolean comprado = false;
 	
 	public Producto(String nombre, TipoAtraccion tipoAtraccion) {
 		this.nombre = nombre;
@@ -31,19 +31,19 @@ public abstract class Producto {
 		return this.tipoAtraccion;
 	}
 
-	protected Boolean fueOfrecido() {
-		return this.ofrecido;
+	protected Boolean fueComprado() {
+		return this.comprado;
 	}
 	
-	abstract public void setOfrecido(Boolean estado);
+	abstract protected void setComprado(Boolean estado);
 	
-	abstract public void reducirCupo();
+	abstract protected void reducirCupo();
 	
-	abstract public Boolean tieneCupo();
+	abstract protected Boolean tieneCupo();
 	
-	abstract public Boolean esUnaPromocion();
+	abstract protected Boolean esUnaPromocion();
 
-	abstract public LinkedList<Atraccion> getAtracciones();
+	abstract protected LinkedList<Atraccion> getAtracciones();
 	
 	public void setCosto(int costoFinal){
 		this.costo = costoFinal;

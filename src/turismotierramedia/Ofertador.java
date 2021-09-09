@@ -23,7 +23,7 @@ public class Ofertador {
 			for (Producto producto : productos) {
 				
 				if (usuario.puedeComprar(producto) && producto.tieneCupo()
-						&& !producto.fueOfrecido()) {
+						&& !producto.fueComprado()) {
 					System.out.println("¿Desea usted comprar: " + producto + "?");
 					System.out.println("Escriba 'si' o 'no' y luego presione Enter para continuar.");
 					String eleccion = input.nextLine();
@@ -33,7 +33,7 @@ public class Ofertador {
 						eleccion = input.nextLine();
 					}
 					if (eleccion.equalsIgnoreCase("si")) {
-						producto.setOfrecido(true);
+						producto.setComprado(true);
 						producto.reducirCupo();
 						itinerario.agregarProducto(producto);
 						itinerario.setCosto(producto.getCosto());
@@ -55,10 +55,10 @@ public class Ofertador {
 				System.out.println(itinerario);
 			}
 			
-			// SE SETEAN NUEVAMENTE LOS PRODUCTOS AL ESTADO SIN OFRECER ORIGINAL
+			// SE SETEAN NUEVAMENTE LOS PRODUCTOS AL ESTADO SIN COMPRAR ORIGINAL
 			for(Producto producto : productos) {
-				if(producto.fueOfrecido()) {
-					producto.setOfrecido(false);
+				if(producto.fueComprado()) {
+					producto.setComprado(false);
 				}
 			}
 			TurismoTierraMedia.escribirItinerarioPorUsuario(usuario, itinerario,

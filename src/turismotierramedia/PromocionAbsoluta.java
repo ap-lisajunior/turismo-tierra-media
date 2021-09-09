@@ -13,7 +13,7 @@ public class PromocionAbsoluta extends Promocion {
 	}
 
 	@Override
-	public void calcularCostoFinal() {
+	protected void calcularCostoFinal() {
 		super.setCosto(costoFinal);
 	}
 

@@ -13,7 +13,7 @@ public class PromocionAxB extends Promocion {
 	}
 
 	@Override
-	public void calcularCostoFinal() {
+	protected void calcularCostoFinal() {
 		int aux = 0;
 		for(Atraccion atraccion : atracciones) {
 			aux += atraccion.getCosto();
