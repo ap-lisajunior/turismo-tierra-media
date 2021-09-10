@@ -69,6 +69,22 @@ public class PromocionPorcentualTest {
 		
 		assertEquals(Integer.valueOf((int) 22.4), packAventura.getCosto());
 	}
+	
+	@Test
+	public void queSeCreaConValoresDeParametrosCorrectos() {
+		Atraccion bosqueNegro = new Atraccion("Bosque Negro",3,4,12,TipoAtraccion.AVENTURA);
+		Atraccion mordor = new Atraccion("Mordor",25,3,4,TipoAtraccion.AVENTURA);
+		
+		LinkedList<Atraccion> packAven = new LinkedList<Atraccion>();
+		packAven.add(bosqueNegro);
+		packAven.add(mordor);
+		
+		Producto packAventura = new PromocionPorcentual("Pack Aventura", packAven, TipoAtraccion.AVENTURA, 0.2);
+		
+		assertEquals("Pack Aventura", packAventura.getNombre());
+		assertEquals(packAven, packAventura.getAtracciones());
+		assertEquals(TipoAtraccion.AVENTURA, packAventura.tipoAtraccion);
+	}
 
 	
 }
