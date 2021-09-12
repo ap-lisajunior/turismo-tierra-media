@@ -43,9 +43,9 @@ public class Atraccion extends Producto {
 
 	@Override
 	public String toString() {
-		return "Nombre atraccion: " + this.getNombre() + "; Cupo de atracción: " 
-				+ this.getCupo() + "; Costo de atraccion: " + this.getCosto() + "; Tiempo de atraccion: "
-				+ this.getTiempo() + "; Tipo de atraccion: " + this.getTipoAtraccion().getDescripcion();
+		return "Esta es una atraccion del tipo: " + this.getTipoAtraccion().getDescripcion() 
+				+ "\nCosto: " + this.getCosto() + " monedas."
+				+ "\nTiempo de permanencia: " + this.getTiempo() + " horas.";
 	}
 
 

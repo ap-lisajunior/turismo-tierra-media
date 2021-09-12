@@ -43,12 +43,7 @@ public class Itinerario {
 
 	@Override
 	public String toString() {
-		return "Resumen de su itinerario: \n" + "Atracciones a visitar: " + this.atracciones.stream().map(Producto::getNombre).collect(Collectors.toList()) + "; Costo total: " + this.costo + "; Tiempo duracion total: " + tiempo;
+		return "Resumen de su itinerario: \n" + "Atracciones a visitar: " + this.atracciones.stream().map(Producto::getNombre).collect(Collectors.toList()) + "\nCosto total: " + this.costo + " monedas." + "\nTiempo de permanencia total: " + this.tiempo + " horas.";
 	}
-
-
-	
-	
-	
 	
 }

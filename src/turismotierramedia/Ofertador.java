@@ -24,8 +24,10 @@ public class Ofertador {
 				
 				if (usuario.puedeComprar(producto) && producto.tieneCupo()
 						&& !producto.fueComprado()) {
-					System.out.println("¿Desea usted comprar: " + producto + "?");
-					System.out.println("Escriba 'si' o 'no' y luego presione Enter para continuar.");
+					System.out.println("¿Desea usted comprar: " + producto.getNombre() + "?");
+					System.out.println("Descripcion del producto: ");
+					System.out.println(producto);
+					System.out.println("\nEscriba 'si' o 'no' y luego presione Enter para continuar.\n");
 					String eleccion = input.nextLine();
 
 					while (!eleccion.equalsIgnoreCase("si") && !eleccion.equalsIgnoreCase("no")) {
@@ -43,7 +45,7 @@ public class Ofertador {
 								+ producto.getCosto() + " monedas.\n");
 						}
 					else {
-						System.out.println("Usted no ha comprado este producto. Siguiente oferta: \n");
+						System.out.println("Usted no ha comprado este producto.\n ");
 					}
 					}
 
@@ -63,6 +65,10 @@ public class Ofertador {
 			}
 			TurismoTierraMedia.escribirItinerarioPorUsuario(usuario, itinerario,
 					"salida/"+ usuario.getNombre().toLowerCase() + ".out");
+			System.out.println("\n**********************************************");
+			System.out.println("PRESIONE ENTER PARA MOSTRAR SIGUIENTE USUARIO");
+			System.out.println("**********************************************");
+			input.nextLine();
 		}
 		input.close();
 	}

@@ -1,18 +1,19 @@
 package turismotierramedia;
 
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 public abstract class Promocion extends Producto{
 	
 	LinkedList<Atraccion> atracciones;
-	private String nombreAtracciones = "";
+	//private String nombreAtracciones = "";
 
 	public Promocion(String nombre, LinkedList<Atraccion> atracciones, TipoAtraccion tipoAtraccion) {
 		super(nombre, tipoAtraccion);
 		this.atracciones = atracciones;
-		for(Atraccion atraccion : atracciones) {
-			nombreAtracciones += atraccion.getNombre() + ", ";
-		}
+//		for(Atraccion atraccion : atracciones) {
+//			nombreAtracciones += atraccion.getNombre() + ", ";
+//		}
 		calcularTiempoTotal();
 	}
 	
@@ -64,8 +65,10 @@ public abstract class Promocion extends Producto{
 
 	@Override
 	public String toString() {
-		return "Nombre promocion: " + this.getNombre() + "; Costo de promocion: " + this.getCosto() +"; Atracciones de la promocion: " + this.nombreAtracciones +"; Tiempo total de atracciones: "
-				+ this.getTiempo() + "; Tipo de atracciones: " + this.getTipoAtraccion().getDescripcion();
+		return "Este producto es una promoción del tipo " + this.getTipoAtraccion().getDescripcion() 
+				+ " que abarca las siguientes atracciones: " + this.getAtracciones().stream().map(Producto::getNombre).collect(Collectors.toList()) + "." 
+				+ "\nCosto total: " + this.getCosto() + " monedas." 
+				+ "\nTiempo de permanencia total: " + this.getTiempo() + " horas.";
 	}		
 	
 	

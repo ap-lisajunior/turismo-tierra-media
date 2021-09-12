@@ -157,7 +157,7 @@ public class TurismoTierraMedia {
 	// METODO PARA ORDENAR LOS PRODUCTOS EN BASE A LA CONSIGNA DADA
 	
 	public static void ordenarProductos(LinkedList<Producto> productos, TipoAtraccion tipoAtraccionPreferida) {
-		Collections.sort(productos, new Ordenar(tipoAtraccionPreferida));
+		Collections.sort(productos, new Ordenador(tipoAtraccionPreferida));
 	}
 	
 
