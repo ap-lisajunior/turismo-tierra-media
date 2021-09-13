@@ -35,11 +35,14 @@ public class Atraccion extends Producto {
 	}		
 	
 	@Override
-	public void setComprado(Boolean estado) {
+	protected void setComprado(Boolean estado) {
 		super.comprado = estado;
 	}
 
-	
+	@Override
+	protected LinkedList<Atraccion> getAtracciones() {
+		return null;
+	}	
 
 	@Override
 	public String toString() {
@@ -47,15 +50,5 @@ public class Atraccion extends Producto {
 				+ "\nCosto: " + this.getCosto() + " monedas."
 				+ "\nTiempo de permanencia: " + this.getTiempo() + " horas.";
 	}
-
-
-	@Override
-	public LinkedList<Atraccion> getAtracciones() {
-		return null;
-	}
-
-
-
-
 	
 }
