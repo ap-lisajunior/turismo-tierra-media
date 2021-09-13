@@ -168,7 +168,7 @@ public class TurismoTierraMedia {
 		
 		salida.println("Datos de usuario: ");
 		salida.println(usuario);
-		salida.println(itinerario);
+		salida.println("\n" + itinerario);
 		
 		salida.close();
 	}

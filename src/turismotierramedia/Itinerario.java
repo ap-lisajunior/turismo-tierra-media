@@ -10,6 +10,7 @@ public class Itinerario {
 	private Integer costo = 0;
 	private Double tiempo = 0.0;
 
+	
 	protected LinkedList<Producto> getAtracciones() {
 		return atracciones;
 	}
@@ -40,6 +41,7 @@ public class Itinerario {
 	protected void setTiempo(Double tiempo) {
 		this.tiempo += tiempo;
 	}
+	
 
 	@Override
 	public String toString() {

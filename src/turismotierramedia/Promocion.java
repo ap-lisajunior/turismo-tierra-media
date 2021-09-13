@@ -6,14 +6,10 @@ import java.util.stream.Collectors;
 public abstract class Promocion extends Producto{
 	
 	LinkedList<Atraccion> atracciones;
-	//private String nombreAtracciones = "";
 
 	public Promocion(String nombre, LinkedList<Atraccion> atracciones, TipoAtraccion tipoAtraccion) {
 		super(nombre, tipoAtraccion);
 		this.atracciones = atracciones;
-//		for(Atraccion atraccion : atracciones) {
-//			nombreAtracciones += atraccion.getNombre() + ", ";
-//		}
 		calcularTiempoTotal();
 	}
 	
