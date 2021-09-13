@@ -3844,7 +3844,7 @@
 											"model": {
 												"$ref": "AAAAAAF732SNAy3XLew="
 											},
-											"font": "Arial;13;0",
+											"font": "Arial;13;2",
 											"left": 901,
 											"top": 177,
 											"width": 165.69921875,
@@ -3861,7 +3861,7 @@
 											"model": {
 												"$ref": "AAAAAAF732Sswy5HtqE="
 											},
-											"font": "Arial;13;0",
+											"font": "Arial;13;2",
 											"left": 901,
 											"top": 192,
 											"width": 165.69921875,
@@ -3878,7 +3878,7 @@
 											"model": {
 												"$ref": "AAAAAAF732TjOS63r7Q="
 											},
-											"font": "Arial;13;0",
+											"font": "Arial;13;2",
 											"left": 901,
 											"top": 207,
 											"width": 165.69921875,
@@ -3895,7 +3895,7 @@
 											"model": {
 												"$ref": "AAAAAAF732UPIy8nKIY="
 											},
-											"font": "Arial;13;0",
+											"font": "Arial;13;2",
 											"left": 901,
 											"top": 222,
 											"width": 165.69921875,
@@ -8553,7 +8553,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF7fikdY+PBNuE="
 							},
-							"name": "fueComprado"
+							"name": "fueComprado",
+							"isAbstract": true
 						},
 						{
 							"_type": "UMLOperation",
@@ -8561,7 +8562,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF7fikdY+PBNuE="
 							},
-							"name": "reducirCupo"
+							"name": "reducirCupo",
+							"isAbstract": true
 						},
 						{
 							"_type": "UMLOperation",
@@ -8569,7 +8571,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF7fikdY+PBNuE="
 							},
-							"name": "tieneCupo"
+							"name": "tieneCupo",
+							"isAbstract": true
 						},
 						{
 							"_type": "UMLOperation",
@@ -8577,7 +8580,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF7fikdY+PBNuE="
 							},
-							"name": "esUnaPromocion"
+							"name": "esUnaPromocion",
+							"isAbstract": true
 						}
 					],
 					"isAbstract": true
