@@ -10,4 +10,8 @@ public class DAOFactory {
 		return new PromocionDAOImpl();
 	}
 	
+	public static AtraccionDAO getAtraccionDAO() {
+		return new AtraccionDAOImpl();
+	}
+	
 }

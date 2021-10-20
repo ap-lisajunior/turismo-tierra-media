@@ -15,15 +15,15 @@ public abstract class Producto {
 		this.tipoAtraccion = tipoAtraccion;
 	}
 
-	protected String getNombre() {
+	public String getNombre() {
 		return this.nombre;
 	}
 
-	protected Integer getCosto() {
+	public Integer getCosto() {
 		return this.costo;
 	}
 
-	protected Double getTiempo() {
+	public Double getTiempo() {
 		return this.tiempo;
 	}
 	

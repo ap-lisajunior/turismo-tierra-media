@@ -14,7 +14,7 @@ public class Atraccion extends Producto {
 	}
 
 
-	protected int getCupo() {
+	public int getCupo() {
 		return this.cupo;
 	}
 	
