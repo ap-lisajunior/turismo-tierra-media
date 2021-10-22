@@ -12,8 +12,7 @@ public class Atraccion extends Producto {
 		super.setTiempo(tiempo);
 		this.cupo = cupo;
 	}
-
-
+	
 	public int getCupo() {
 		return this.cupo;
 	}
@@ -42,7 +41,8 @@ public class Atraccion extends Producto {
 	@Override
 	protected LinkedList<Atraccion> getAtracciones() {
 		return null;
-	}	
+	}
+	
 
 	@Override
 	public String toString() {
