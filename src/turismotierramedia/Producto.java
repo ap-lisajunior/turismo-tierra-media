@@ -27,7 +27,7 @@ public abstract class Producto {
 		return this.tiempo;
 	}
 	
-	protected TipoAtraccion getTipoAtraccion() {
+	public TipoAtraccion getTipoAtraccion() {
 		return this.tipoAtraccion;
 	}
 
