@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import dao.DAOFactory;
+import dao.ItinerarioDAO;
+import dao.UsuarioDAO;
+
 public class Ofertador {
 
 	public static void sugerirItineriario() throws IOException {
@@ -11,6 +15,8 @@ public class Ofertador {
 		LinkedList<Usuario> usuarios = TurismoTierraMedia.getUsuarios();
 		LinkedList<Producto> productos = TurismoTierraMedia.getProductos();
 		Itinerario itinerario;
+		UsuarioDAO usuarioDAO = DAOFactory.getUsuarioDAO();
+		ItinerarioDAO itinerarioDAO = DAOFactory.getItinerarioDAO();
 
 		Scanner input = new Scanner(System.in);
 
@@ -28,7 +34,8 @@ public class Ofertador {
 			for (Producto producto : productos) {
 				// SE FILTRA LA INFORMACION A MOSTRAR
 				if (usuario.puedeComprar(producto) && producto.tieneCupo()
-						&& !producto.fueComprado()) {
+						&& !producto.fueComprado() && itinerarioDAO.findByNombreAtraccion(producto, usuario) == null
+						&& itinerarioDAO.findByNombrePromocion(producto, usuario) == null) {
 					if(producto.esUnaPromocion()) {
 						System.out.println("\n¿Desea usted comprar " + producto.getNombre() + "?");
 					} else {
@@ -45,12 +52,19 @@ public class Ofertador {
 					}
 					if (eleccion.equalsIgnoreCase("si")) {
 						// PROCESO DE COMPRA
+						usuario.aceptarOferta(producto);
+						usuarioDAO.update(usuario);
 						producto.setComprado(true);
 						producto.reducirCupo();
-						itinerario.agregarProducto(producto);
+						if (producto.esUnaPromocion()) {
+							itinerarioDAO.insertPromocion(usuario, producto);
+							itinerario.agregarPromocion(producto);
+						}else {
+							itinerarioDAO.insertAtraccion(usuario, producto);
+							itinerario.agregarAtraccion(producto);
+						}
 						itinerario.setCosto(producto.getCosto());
 						itinerario.setTiempo(producto.getTiempo());
-						usuario.aceptarOferta(producto);
 						System.out.println("____________________________________________");
 						System.out.println("\nUsted ha comprado: " + producto.getNombre() + " a un precio de "
 								+ producto.getCosto() + " monedas.");
@@ -100,5 +114,4 @@ public class Ofertador {
 		}
 		input.close();
 	}
-
 }
