@@ -14,7 +14,7 @@ public abstract class Producto {
 		this.nombre = nombre;
 		this.tipoAtraccion = tipoAtraccion;
 	}
-
+	
 	public String getNombre() {
 		return this.nombre;
 	}

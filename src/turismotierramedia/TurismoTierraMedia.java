@@ -5,53 +5,37 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
+
+import dao.DAOFactory;
+import dao.MissingDataException;
+import dao.UsuarioDAO;
+import jdbc.ConnectionProvider;
 
 public class TurismoTierraMedia {
 	
 	// DECLARACION LISTAS DE OBJETOS
 	
-	static LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
 	static LinkedList<Producto> atracciones = new LinkedList<Producto>();
 	static LinkedList<Producto> promociones = new LinkedList<Producto>();
+	static LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
 	
 	
-	// OBTENGO LISTA DE USUARIOS DESDE ARCHIVO
+	// OBTENGO LISTA DE USUARIOS DESDE BASE DE DATOS
 	
-	public static LinkedList<Usuario> getUsuarios(){
-		Scanner sc = null;
-		
-		try {
-			sc = new Scanner(new File("entrada/usuarios.in"));
-			
-			while(sc.hasNext()) {
-				String linea = sc.nextLine();
-				String datos[] = linea.split(",");
-				
-				String nombre = datos[0];
-				int presupuesto = Integer.parseInt(datos[1]);
-				double tiempo = Double.parseDouble(datos[2]);
-				TipoAtraccion tipoatraccion = TipoAtraccion.valueOf(datos[3]);
-				
-				Usuario usuario = new Usuario(nombre, presupuesto, tiempo, tipoatraccion);
-				
-				if(!usuarios.contains(usuario)) {
-					usuarios.add(usuario);
-				}
-			}
-		}
-		catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		sc.close();
-		
+	public static LinkedList<Usuario> getUsuarios() {
+		UsuarioDAO usuarioDAO = DAOFactory.getUsuarioDAO();
+		usuarios = usuarioDAO.createUsuario();
 		return usuarios;
 	}
 	
-	// OBTENGO LISTA DE ATRACCIONES DESDE ARCHIVO
+	// OBTENGO LISTA DE ATRACCIONES DESDE BASE DE DATOS
 	
 	public static LinkedList<Producto> getAtracciones(){
 		
@@ -85,7 +69,7 @@ public class TurismoTierraMedia {
 		return atracciones;
 	}
 	
-	// OBTENGO LISTA DE PROMOCIONES DESDE ARCHIVO
+	// OBTENGO LISTA DE PROMOCIONES DESDE BASE DE DATOS
 	
 	public static LinkedList<Producto> getPromociones(){
 		
