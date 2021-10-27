@@ -4,13 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 import jdbc.ConnectionProvider;
 import turismotierramedia.Itinerario;
 import turismotierramedia.Producto;
-import turismotierramedia.PromocionAbsoluta;
-import turismotierramedia.TipoAtraccion;
 import turismotierramedia.Usuario;
 
 public class ItinerarioDAOImpl implements ItinerarioDAO{
@@ -24,7 +23,7 @@ public class ItinerarioDAOImpl implements ItinerarioDAO{
 	@Override
 	public int countAll() {
 		try {
-			String sql = "SELECT COUNT(1) AS TOTAL FROM ITINERARIO";
+			String sql = "SELECT COUNT(1) AS TOTAL FROM ITINERARIOS";
 			Connection conn = ConnectionProvider.getConnection();
 			PreparedStatement statement = conn.prepareStatement(sql);
 			ResultSet resultados = statement.executeQuery();
@@ -41,12 +40,14 @@ public class ItinerarioDAOImpl implements ItinerarioDAO{
 	@Override
 	public int insertAtraccion(Usuario usuario, Producto producto) {
 		try {
-			String sql = "INSERT INTO ITINERARIO (NOMBRE_USUARIO, NOMBRE_ATRACCION) VALUES (?, ?)";
+			String sql = "INSERT INTO ITINERARIOS (NOMBRE_USUARIO, NOMBRE_ATRACCION, COSTO, TIEMPO) VALUES (?, ?, ?, ?)";
 			Connection conn = ConnectionProvider.getConnection();
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, usuario.getNombre());
 			statement.setString(2, producto.getNombre());
+			statement.setInt(3, producto.getCosto());
+			statement.setDouble(4, producto.getTiempo());
 			int rows = statement.executeUpdate();
 
 			return rows;
@@ -58,12 +59,14 @@ public class ItinerarioDAOImpl implements ItinerarioDAO{
 	@Override
 	public int insertPromocion(Usuario usuario, Producto producto) {
 		try {
-			String sql = "INSERT INTO ITINERARIO (NOMBRE_USUARIO, NOMBRE_PROMOCION) VALUES (?, ?)";
+			String sql = "INSERT INTO ITINERARIOS (NOMBRE_USUARIO, NOMBRE_PROMOCION, COSTO, TIEMPO) VALUES (?, ?, ?, ?)";
 			Connection conn = ConnectionProvider.getConnection();
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, usuario.getNombre());
 			statement.setString(2, producto.getNombre());
+			statement.setInt(3, producto.getCosto());
+			statement.setDouble(4, producto.getTiempo());
 			int rows = statement.executeUpdate();
 
 			return rows;
@@ -73,44 +76,24 @@ public class ItinerarioDAOImpl implements ItinerarioDAO{
 	}
 	
 	@Override
-	public Itinerario findByNombrePromocion(Producto producto, Usuario usuario) {
+	public Itinerario findByUsuario(Usuario usuario, LinkedList<Producto> atracciones, LinkedList<Producto> promociones) {
 		try {
-			String sql = "SELECT * FROM ITINERARIO WHERE NOMBRE_PROMOCION = ? AND NOMBRE_USUARIO = ?";
+			String sql = "SELECT itinerarios.nombre_usuario, group_concat(itinerarios.nombre_atraccion, ';') AS 'atracciones', group_concat(itinerarios.nombre_promocion, ';') AS 'promociones'\r\n"
+					+ "FROM itinerarios\r\n"
+					+ "WHERE nombre_usuario = ?"
+					+ "GROUP BY itinerarios.nombre_usuario";
 			Connection conn = ConnectionProvider.getConnection();
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setString(1, producto.getNombre());
-			statement.setString(2, usuario.getNombre());
+			statement.setString(1, usuario.getNombre());
 			ResultSet resultados = statement.executeQuery();
 
-			Itinerario itinerario = null;
-
+			Itinerario itinerario = new Itinerario();
+			
 			if (resultados.next()) {
-				itinerario = toItinerario(resultados);
+				itinerario = toItinerario(resultados, atracciones, promociones, itinerario);
 			}
-
 			return itinerario;
-		} catch (Exception e) {
-			throw new MissingDataException(e);
-		}
-	}
-	
-	@Override
-	public Itinerario findByNombreAtraccion(Producto producto, Usuario usuario) {
-		try {
-			String sql = "SELECT * FROM ITINERARIO WHERE NOMBRE_ATRACCION = ? AND NOMBRE_USUARIO = ?";
-			Connection conn = ConnectionProvider.getConnection();
-			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setString(1, producto.getNombre());
-			statement.setString(2, usuario.getNombre());
-			ResultSet resultados = statement.executeQuery();
-
-			Itinerario itinerario = null;
-
-			if (resultados.next()) {
-				itinerario = toItinerario(resultados);
-			}
-
-			return itinerario;
+			
 		} catch (Exception e) {
 			throw new MissingDataException(e);
 		}
@@ -134,7 +117,38 @@ public class ItinerarioDAOImpl implements ItinerarioDAO{
 		return 0;
 	}
 	
-	private Itinerario toItinerario(ResultSet resultados) throws SQLException {
-		return new Itinerario(resultados.getString(2), resultados.getString(3), resultados.getString(4));
+	private Itinerario toItinerario(ResultSet resultados, LinkedList<Producto> atracciones, LinkedList<Producto> promociones, Itinerario itinerario) throws SQLException {
+				
+		String listaAtracciones = resultados.getString("atracciones");
+		if(listaAtracciones != null) {
+			String[] nombresListaAtracciones = listaAtracciones.split(";");
+			for(String nombre : nombresListaAtracciones) {
+				for(Producto atraccion : atracciones) {
+					if(atraccion.getNombre().equals(nombre)) {
+						itinerario.agregarAtraccion(atraccion);
+						itinerario.setCosto(atraccion.getCosto());
+						itinerario.setTiempo(atraccion.getTiempo());
+						break;
+					}
+				}
+			}
+		}
+		
+		String listaPromociones = resultados.getString("promociones");
+		if(listaPromociones != null) {
+			String[] nombresListaPromociones = listaPromociones.split(";");
+			for(String nombre : nombresListaPromociones) {
+				for(Producto promocion : promociones) {
+					if(promocion.getNombre().equals(nombre)) {
+						itinerario.agregarPromocion(promocion);
+						itinerario.setCosto(promocion.getCosto());
+						itinerario.setTiempo(promocion.getTiempo());
+						break;
+					}
+				}
+			}
+		}
+	
+		return itinerario;			
 	}
 }

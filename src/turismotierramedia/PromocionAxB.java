@@ -20,5 +20,16 @@ public class PromocionAxB extends Promocion {
 		}
 		super.setCosto(aux - this.bonificada.getCosto());	
 	}
+	
+	@Override
+	public int getCupo() {
+		int auxMaxCupo = 0;
+		for(Atraccion atraccion : atracciones) {
+			if(auxMaxCupo < atraccion.getCupo()) {
+				auxMaxCupo = atraccion.getCupo();
+			}
+		}
+		return auxMaxCupo;
+	}
 
 }

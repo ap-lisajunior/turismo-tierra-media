@@ -17,4 +17,15 @@ public class PromocionAbsoluta extends Promocion {
 		super.setCosto(costoFinal);
 	}
 
+	@Override
+	public int getCupo() {
+		int auxMaxCupo = 0;
+		for(Atraccion atraccion : atracciones) {
+			if(auxMaxCupo < atraccion.getCupo()) {
+				auxMaxCupo = atraccion.getCupo();
+			}
+		}
+		return auxMaxCupo;
+	}
+
 }

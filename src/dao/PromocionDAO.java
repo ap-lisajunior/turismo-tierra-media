@@ -1,11 +1,10 @@
 package dao;
 
-import java.util.List;
+import java.util.LinkedList;
+import turismotierramedia.Producto;
 
-import turismotierramedia.Promocion;
-
-public interface PromocionDAO extends GenericDAO<Promocion>{
+public interface PromocionDAO extends GenericDAO<Producto>{
 	
-	public abstract List<Promocion> crearPromociones();
+	public abstract LinkedList<Producto> createPromociones(LinkedList<Producto> atracciones);
 	
 }

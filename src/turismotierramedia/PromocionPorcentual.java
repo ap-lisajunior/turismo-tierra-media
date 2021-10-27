@@ -21,5 +21,15 @@ public class PromocionPorcentual extends Promocion {
 		super.setCosto((int) (aux - aux * this.porcentajeDescuento));
 	}
 	
+	@Override
+	public int getCupo() {
+		int auxMaxCupo = 0;
+		for(Atraccion atraccion : atracciones) {
+			if(auxMaxCupo < atraccion.getCupo()) {
+				auxMaxCupo = atraccion.getCupo();
+			}
+		}
+		return auxMaxCupo;
+	}
 	
 }

@@ -77,5 +77,7 @@ public abstract class Producto {
 			return false;
 		return true;
 	}
+
+	public abstract int getCupo();
 	
 }

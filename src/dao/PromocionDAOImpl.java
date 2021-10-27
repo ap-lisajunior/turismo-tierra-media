@@ -20,21 +20,21 @@ import turismotierramedia.TipoPromocion;
 public class PromocionDAOImpl implements PromocionDAO {
 
 	@Override
-	public List<Promocion> crearPromociones() {
+	public LinkedList<Producto> createPromociones(LinkedList<Producto> atracciones) {
 		try {
 			String sql = "SELECT promociones.nombre, group_concat(atracciones.nombre, ';') AS 'lista_atracciones', promociones.tipo_atraccion, promociones.tipo_promocion, promociones.descuento \r\n"
 					+ "FROM promociones\r\n"
-					+ "JOIN atraccion_promocion ON atraccion_promocion.id_promocion = promociones.id_promocion\r\n"
-					+ "JOIN atracciones ON atracciones.id_atraccion = atraccion_promocion.id_atraccion\r\n"
+					+ "JOIN atraccion_promocion ON atraccion_promocion.nombre_promocion = promociones.nombre\r\n"
+					+ "JOIN atracciones ON atracciones.nombre = atraccion_promocion.nombre_atraccion\r\n"
 					+ "GROUP BY promociones.nombre";
 			
 			Connection conn = ConnectionProvider.getConnection();
 			PreparedStatement statement = conn.prepareStatement(sql);
 			ResultSet resultados = statement.executeQuery();
 			
-			List<Promocion> promociones = new LinkedList<Promocion>();
+			LinkedList<Producto> promociones = new LinkedList<Producto>();
 			while(resultados.next()) {
-				promociones.add(toPromocion(resultados));
+				promociones.add(toPromocion(resultados, atracciones));
 			}
 			
 			return promociones;
@@ -44,15 +44,14 @@ public class PromocionDAOImpl implements PromocionDAO {
 		}
 	}
 	
-	private Promocion toPromocion(ResultSet resultados) throws SQLException {
+	private Promocion toPromocion(ResultSet resultados, LinkedList<Producto> atracciones) throws SQLException {
 		String nombre = resultados.getString("nombre");
 		String[] nombreAtracciones = resultados.getString("lista_atracciones").split(";");
 		TipoAtraccion tipoAtraccion = TipoAtraccion.valueOf(resultados.getString("tipo_atraccion"));
 		TipoPromocion tipoPromocion = TipoPromocion.valueOf(resultados.getString("tipo_promocion"));
 		
 		LinkedList<Atraccion> atraccionesPromocion = new LinkedList<Atraccion>();
-		AtraccionDAO atraccionDAO = DAOFactory.getAtraccionDAO();
-		List<Atraccion> atraccionesTotales = atraccionDAO.crearAtracciones();
+		LinkedList<Producto> atraccionesTotales = atracciones;
 		
 		for(String nombreAtraccion : nombreAtracciones) {
 			for(Producto atraccion : atraccionesTotales) {
@@ -76,6 +75,36 @@ public class PromocionDAOImpl implements PromocionDAO {
 		}
 		return null;		
 		
+	}
+
+	@Override
+	public List<Producto> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int countAll() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insert(Producto t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(Producto t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(Producto t) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

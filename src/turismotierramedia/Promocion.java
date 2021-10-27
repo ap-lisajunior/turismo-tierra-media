@@ -30,7 +30,7 @@ public abstract class Promocion extends Producto{
 	
 	@Override
 	protected Boolean tieneCupo() {
-		for(Atraccion atraccion : atracciones) {
+		for(Producto atraccion : atracciones) {
 			if(atraccion.getCupo() == 0) {
 				return false;
 			}

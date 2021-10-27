@@ -9,49 +9,53 @@ public class Itinerario {
 	private LinkedList<Producto> promociones = new LinkedList<Producto>();
 	private Integer costo = 0;
 	private Double tiempo = 0.0;
-	private String nombreUsuario;
-	private String nombreAtraccion;
-	private String nombrePromocion;
-	
-
-	public Itinerario(String usuario, String atraccion, String promocion) {
-		this.nombreUsuario = usuario;
-		this.nombreAtraccion = atraccion;
-		this.nombrePromocion = promocion;
-	}
+//	private String nombreUsuario;
+//	private String nombreAtraccion;
+//	private String nombrePromocion;
+//	
+//
+//	public Itinerario(String usuario, String atraccion, String promocion) {
+//		this.nombreUsuario = usuario;
+//		this.nombreAtraccion = atraccion;
+//		this.nombrePromocion = promocion;
+//	}
 
 	public Itinerario() {
 
 	}
 
-	protected LinkedList<Producto> getAtracciones() {
+	public LinkedList<Producto> getAtracciones() {
 		return atracciones;
 	}
+	
+	public LinkedList<Producto> getPromociones(){
+		return promociones;
+	}
 
-	protected void agregarPromocion(Producto producto) {
+	public void agregarPromocion(Producto producto) {
 		promociones.add(producto);
 		for (Producto atraccion : promociones.getLast().getAtracciones()) {
 			atracciones.add(atraccion);
 		}
 	}
 
-	protected void agregarAtraccion(Producto producto) {
+	public void agregarAtraccion(Producto producto) {
 		atracciones.add(producto);
 	}
 
-	protected Integer getCosto() {
+	public Integer getCosto() {
 		return costo;
 	}
 
-	protected void setCosto(Integer costo) {
+	public void setCosto(Integer costo) {
 		this.costo += costo;
 	}
 
-	protected Double getTiempo() {
+	public Double getTiempo() {
 		return tiempo;
 	}
 
-	protected void setTiempo(Double tiempo) {
+	public void setTiempo(Double tiempo) {
 		this.tiempo += tiempo;
 	}
 

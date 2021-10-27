@@ -9,7 +9,7 @@ public class AtraccionDAOTest {
 	@Test
 	public void test() {
 		AtraccionDAO atraccionDAO = DAOFactory.getAtraccionDAO();
-		System.out.println(atraccionDAO.crearAtracciones());
+		System.out.println(atraccionDAO.createAtracciones());
 	}
 
 }
