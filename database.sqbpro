@@ -101,6 +101,14 @@ VALUES
     ('Frodo', 50, 10, 'AVENTURA'),
     ('Sauron', 100, 32, 'PAISAJE');
 	
+INSERT INTO promociones (nombre, tipo_atraccion, tipo_promocion, descuento)
+VALUES
+    ('Pack aventura', 'AVENTURA', 'PORCENTUAL', 0.20),
+    ('Pack degustacion', 'DEGUSTACION', 'ABSOLUTA', 36);
+
+INSERT INTO promociones (nombre, tipo_atraccion, tipo_promocion)
+VALUES ('Pack paisajes', 'PAISAJE', 'AXB');
+
 INSERT INTO atracciones (nombre, costo, tiempo, cupo, tipo, id_promocion)
 VALUES
     ('Moria', 10 ,2 ,6 ,'AVENTURA', NULL),
@@ -111,38 +119,30 @@ VALUES
     ('Lothlorien', 35,1,30, 'DEGUSTACION', 2),
     ('Erebor', 12, 3, 32, 'PAISAJE', 3),
     ('Bosque Negro', 3, 4, 12, 'AVENTURA', 1);
-	
-INSERT INTO promociones (nombre, tipo_atraccion, tipo_promocion, descuento)
-VALUES
-    ('Pack aventura', 'AVENTURA', 'PORCENTUAL', 0.20),
-    ('Pack degustacion', 'DEGUSTACION', 'ABSOLUTA', 36);
 
-INSERT INTO promociones (nombre, tipo_atraccion, tipo_promocion)
-VALUES ('Pack paisajes', 'PAISAJE', 'AXB');
-
--- CREACION RELACIONES ATRACCION_PROMOCION
-
-INSERT INTO atraccion_promocion (nombre_atraccion, nombre_promocion)
-SELECT atracciones.nombre, promociones.nombre FROM atracciones
-JOIN promociones ON promociones.id_promocion = atracciones.id_promocion
-
-
--- CONSULTAS VARIAS
-
---SELECT * FROM ITINERARIOS WHERE NOMBRE_ATRACCION = 'Moria' AND NOMBRE_USUARIO = 'asd'
-
---SELECT atracciones.nombre, promociones.nombre FROM atraccion_promocion
---JOIN atracciones ON atraccion_promocion.id_atraccion = atracciones.id_atraccion
---JOIN promociones ON atraccion_promocion.id_promocion = promociones.id_promocion
-
---SELECT promociones.nombre, group_concat(atracciones.nombre, ';') as 'lista_atracciones', promociones.tipo_atraccion, promociones.tipo_promocion, promociones.descuento 
---FROM promociones
---JOIN atraccion_promocion ON atraccion_promocion.nombre_promocion= promociones.nombre
---JOIN atracciones ON atracciones.nombre = atraccion_promocion.nombre_atraccion
---GROUP BY promociones.nombre
-
---SELECT itinerarios.nombre_usuario, group_concat(itinerarios.nombre_atraccion, ';') AS 'atracciones', group_concat(itinerarios.nombre_promocion, ';') AS 'promociones'
---FROM itinerarios
---GROUP BY itinerarios.nombre_usuario;
+-- CREACION RELACIONES ATRACCION_PROMOCION
+
+INSERT INTO atraccion_promocion (nombre_atraccion, nombre_promocion)
+SELECT atracciones.nombre, promociones.nombre FROM atracciones
+JOIN promociones ON promociones.id_promocion = atracciones.id_promocion
+
+
+-- CONSULTAS VARIAS
+
+--SELECT * FROM ITINERARIOS WHERE NOMBRE_ATRACCION = 'Moria' AND NOMBRE_USUARIO = 'asd'
+
+--SELECT atracciones.nombre, promociones.nombre FROM atraccion_promocion
+--JOIN atracciones ON atraccion_promocion.id_atraccion = atracciones.id_atraccion
+--JOIN promociones ON atraccion_promocion.id_promocion = promociones.id_promocion
+
+--SELECT promociones.nombre, group_concat(atracciones.nombre, ';') as 'lista_atracciones', promociones.tipo_atraccion, promociones.tipo_promocion, promociones.descuento 
+--FROM promociones
+--JOIN atraccion_promocion ON atraccion_promocion.nombre_promocion= promociones.nombre
+--JOIN atracciones ON atracciones.nombre = atraccion_promocion.nombre_atraccion
+--GROUP BY promociones.nombre
+
+--SELECT itinerarios.nombre_usuario, group_concat(itinerarios.nombre_atraccion, ';') AS 'atracciones', group_concat(itinerarios.nombre_promocion, ';') AS 'promociones'
+--FROM itinerarios
+--GROUP BY itinerarios.nombre_usuario;
 
 --SELECT COUNT(1) AS TOTAL FROM ITINERARIOS</sql><current_tab id="0"/></tab_sql></sqlb_project>
