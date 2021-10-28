@@ -98,7 +98,6 @@ public class Ofertador {
 				System.out.println("\n"+ itinerario);
 				System.out.println("____________________________________________");
 			}
-			
 
 			// SE GENERA ARCHIVO DE SALIDA
 //			TurismoTierraMedia.escribirItinerarioPorUsuario(usuario, itinerario,
