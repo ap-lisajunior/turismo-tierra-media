@@ -8,10 +8,8 @@ import turismotierramedia.Usuario;
 
 public interface ItinerarioDAO extends GenericDAO<Itinerario> {
 
-	public abstract int insertAtraccion(Usuario usuario, Producto producto);
-
-	public abstract int insertPromocion(Usuario usuario, Producto producto);
+	public abstract int insertProducto(Usuario usuario, Producto producto);
 	
-	public abstract Itinerario findByUsuario(Usuario usuario, LinkedList<Producto> atracciones, LinkedList<Producto> promociones);
+	public Itinerario findByUsuario(Usuario usuario, LinkedList<Producto> productos);
 
 }

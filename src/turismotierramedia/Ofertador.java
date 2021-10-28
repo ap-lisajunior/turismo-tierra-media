@@ -30,7 +30,7 @@ public class Ofertador {
 		for (Usuario usuario : usuarios) {
 			// SE ORDENAN LOS PRODUCTOS EN BASE A LA PREFERENCIA DE USUARIO
 			TurismoTierraMedia.ordenarProductos(productos, usuario.getTipoAtraccion());
-			itinerario = itinerarioDAO.findByUsuario(usuario, atracciones, promociones);
+			itinerario = itinerarioDAO.findByUsuario(usuario, productos);
 			System.out.println("\nBienvenido/a " + usuario.getNombre() + " al sistema de Turismo en la Tierra Media");
 			System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 			System.out.println("\nSu perfil indica que su tipo de atraccion favorita es de " + usuario.getTipoAtraccion().getDescripcion());
@@ -63,15 +63,15 @@ public class Ofertador {
 						usuarioDAO.update(usuario);
 						producto.reducirCupo();
 						if (producto.esUnaPromocion()) {
-							itinerarioDAO.insertPromocion(usuario, producto);
+							itinerarioDAO.insertProducto(usuario, producto);
 							for(Atraccion atraccion : producto.getAtracciones()) {
 								atraccionDAO.update(atraccion);
 							}
-							itinerario.agregarPromocion(producto);
+							itinerario.agregarProducto(producto);
 						}else {
-							itinerarioDAO.insertAtraccion(usuario, producto);
+							itinerarioDAO.insertProducto(usuario, producto);
 							atraccionDAO.update(producto);
-							itinerario.agregarAtraccion(producto);
+							itinerario.agregarProducto(producto);
 						}
 						itinerario.setCosto(producto.getCosto());
 						itinerario.setTiempo(producto.getTiempo());
@@ -99,10 +99,7 @@ public class Ofertador {
 				System.out.println("____________________________________________");
 			}
 			
-			// SE SETEAN NUEVAMENTE LOS PRODUCTOS AL ESTADO SIN COMPRAR ORIGINAL
-//			for(Producto producto : productos) {
-//					producto.setComprado(false);
-//			}
+
 			// SE GENERA ARCHIVO DE SALIDA
 //			TurismoTierraMedia.escribirItinerarioPorUsuario(usuario, itinerario,
 //					"salida/"+ usuario.getNombre().toLowerCase() + ".out");

@@ -9,16 +9,6 @@ public class Itinerario {
 	private LinkedList<Producto> promociones = new LinkedList<Producto>();
 	private Integer costo = 0;
 	private Double tiempo = 0.0;
-//	private String nombreUsuario;
-//	private String nombreAtraccion;
-//	private String nombrePromocion;
-//	
-//
-//	public Itinerario(String usuario, String atraccion, String promocion) {
-//		this.nombreUsuario = usuario;
-//		this.nombreAtraccion = atraccion;
-//		this.nombrePromocion = promocion;
-//	}
 
 	public Itinerario() {
 
@@ -32,15 +22,15 @@ public class Itinerario {
 		return promociones;
 	}
 
-	public void agregarPromocion(Producto producto) {
-		promociones.add(producto);
-		for (Producto atraccion : promociones.getLast().getAtracciones()) {
-			atracciones.add(atraccion);
+	public void agregarProducto(Producto producto) {
+		if(producto.esUnaPromocion()) {
+			promociones.add(producto);
+			for(Producto atraccion : promociones.getLast().getAtracciones()) {
+				atracciones.add(atraccion);
+			}
+		} else {
+			atracciones.add(producto);
 		}
-	}
-
-	public void agregarAtraccion(Producto producto) {
-		atracciones.add(producto);
 	}
 
 	public Integer getCosto() {
