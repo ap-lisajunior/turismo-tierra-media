@@ -16,6 +16,7 @@ public class TurismoTierraMedia {
 	static LinkedList<Producto> atracciones = new LinkedList<Producto>();
 	static LinkedList<Producto> promociones = new LinkedList<Producto>();
 	static LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
+	static LinkedList<Producto> productos = new LinkedList<Producto>();
 	
 	
 	// OBTENGO LISTA DE USUARIOS DESDE BASE DE DATOS
@@ -40,6 +41,14 @@ public class TurismoTierraMedia {
 		PromocionDAO promocionDAO = DAOFactory.getPromocionDAO();
 		promociones = promocionDAO.createPromociones(atracciones);
 		return promociones;
+	}
+	
+	// CREO LISTA DE PRODUCTOS 
+	
+	public static LinkedList<Producto> getProductos(){
+		productos.addAll(getAtracciones());
+		productos.addAll(getPromociones(atracciones));
+		return productos;
 	}
 	
 	// METODO PARA ORDENAR LOS PRODUCTOS EN BASE A LA CONSIGNA DADA

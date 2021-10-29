@@ -14,11 +14,7 @@ public class Ofertador {
 	public static void sugerirItineriario() throws IOException {
 		
 		LinkedList<Usuario> usuarios = TurismoTierraMedia.getUsuarios();
-		LinkedList<Producto> atracciones = TurismoTierraMedia.getAtracciones();
-		LinkedList<Producto> promociones = TurismoTierraMedia.getPromociones(atracciones);
-		LinkedList<Producto> productos = new LinkedList<Producto>();
-		productos.addAll(atracciones);
-		productos.addAll(promociones);
+		LinkedList<Producto> productos = TurismoTierraMedia.getProductos();
 		
 		Itinerario itinerario;
 		UsuarioDAO usuarioDAO = DAOFactory.getUsuarioDAO();
@@ -44,9 +40,9 @@ public class Ofertador {
 				if (usuario.puedeComprar(producto) && producto.tieneCupo() 
 						&& (!itinerario.getAtracciones().contains(producto) && !itinerario.getPromociones().contains(producto))) {
 					if(producto.esUnaPromocion()) {
-						System.out.println("\n¿Desea usted comprar " + producto.getNombre() + "?");
+						System.out.println("\nï¿½Desea usted comprar " + producto.getNombre() + "?");
 					} else {
-						System.out.println("\n¿Desea usted comprar acceso a " + producto.getNombre() + "?");
+						System.out.println("\nï¿½Desea usted comprar acceso a " + producto.getNombre() + "?");
 					}
 					System.out.println("\nDescripcion: ");
 					System.out.println(producto);
