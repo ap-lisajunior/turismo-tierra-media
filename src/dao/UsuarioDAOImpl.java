@@ -14,22 +14,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 	@Override
 	public List<Usuario> findAll() {
-		try {
-			String sql = "SELECT * FROM USUARIOS";
-			Connection conn = ConnectionProvider.getConnection();
-			PreparedStatement statement = conn.prepareStatement(sql);
-			ResultSet resultados = statement.executeQuery();
-
-			List<Usuario> usuarios = new LinkedList<Usuario>();
-			
-			while (resultados.next()) {
-				usuarios.add(toUser(resultados));
-			}
-
-			return usuarios;
-		} catch (Exception e) {
-			throw new MissingDataException(e);
-		}
+		return null;
 	}
 
 	@Override
@@ -131,7 +116,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 
 	@Override
-	public LinkedList<Usuario> createUsuario() {
+	public LinkedList<Usuario> createUsuarios() {
 		try {
 			String sql = "SELECT * FROM USUARIOS";
 			Connection conn = ConnectionProvider.getConnection();

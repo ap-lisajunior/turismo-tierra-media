@@ -99,11 +99,11 @@ public class ItinerarioDAOImpl implements ItinerarioDAO{
 	}
 	
 	private Itinerario toItinerario(ResultSet resultados, LinkedList<Producto> productos, Itinerario itinerario) throws SQLException {
-				
-		String listaAtracciones = resultados.getString("productos");
-		if(listaAtracciones != null) {
-			String[] nombresListaAtracciones = listaAtracciones.split(";");
-			for(String nombre : nombresListaAtracciones) {
+		
+		String listaProductos = resultados.getString("productos");		
+		if(listaProductos != null) {
+			String[] nombresListaProductos = listaProductos.split(";");
+			for(String nombre : nombresListaProductos) {
 				for(Producto producto : productos) {
 					if(producto.getNombre().equals(nombre)) {
 						itinerario.agregarProducto(producto);

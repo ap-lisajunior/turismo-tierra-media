@@ -10,14 +10,14 @@ public class PromocionAbsolutaTest {
 
 	@Test
 	public void queSeCreaYNoEsNula() {
-		Atraccion lothlórien = new Atraccion("Lothlórien",35,1,30,TipoAtraccion.DEGUSTACION);
+		Atraccion lothlorien = new Atraccion("Lothlï¿½rien",35,1,30,TipoAtraccion.DEGUSTACION);
 		Atraccion laComarca = new Atraccion("La Comarca",3,6.5,150,TipoAtraccion.DEGUSTACION);
 		
 		LinkedList<Atraccion> packD = new LinkedList<Atraccion>();
-		packD.add(lothlórien);
+		packD.add(lothlorien);
 		packD.add(laComarca);
 		
-		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION,36);
+		Producto packDegustacion = new PromocionAbsoluta("Pack Degustaciï¿½n", packD, TipoAtraccion.DEGUSTACION,36);
 		
 		assertNotNull(packDegustacion);
 		
@@ -25,16 +25,16 @@ public class PromocionAbsolutaTest {
 	
 	@Test
 	public void queSeCreaConValoresDeParametrosCorrectos() {
-		Atraccion lothlórien = new Atraccion("Lothlórien",35,1,30,TipoAtraccion.DEGUSTACION);
+		Atraccion lothlorien = new Atraccion("Lothlï¿½rien",35,1,30,TipoAtraccion.DEGUSTACION);
 		Atraccion laComarca = new Atraccion("La Comarca",3,6.5,150,TipoAtraccion.DEGUSTACION);
 		
 		LinkedList<Atraccion> packD = new LinkedList<Atraccion>();
-		packD.add(lothlórien);
+		packD.add(lothlorien);
 		packD.add(laComarca);
 		
-		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION,36);
+		Producto packDegustacion = new PromocionAbsoluta("Pack Degustaciï¿½n", packD, TipoAtraccion.DEGUSTACION,36);
 		
-		assertEquals("Pack Degustación", packDegustacion.getNombre());
+		assertEquals("Pack Degustaciï¿½n", packDegustacion.getNombre());
 		assertEquals(packD, packDegustacion.getAtracciones());
 		assertEquals(TipoAtraccion.DEGUSTACION, packDegustacion.getTipoAtraccion());
 		assertEquals(Integer.valueOf(36), packDegustacion.getCosto());
@@ -42,32 +42,32 @@ public class PromocionAbsolutaTest {
 	
 	@Test
 	public void queEsPromocion() {
-		Atraccion lothlórien = new Atraccion("Lothlórien",35,1,30,TipoAtraccion.DEGUSTACION);
+		Atraccion lothlorien = new Atraccion("Lothlï¿½rien",35,1,30,TipoAtraccion.DEGUSTACION);
 		Atraccion laComarca = new Atraccion("La Comarca",3,6.5,150,TipoAtraccion.DEGUSTACION);
 		
 		LinkedList<Atraccion> packD = new LinkedList<Atraccion>();
-		packD.add(lothlórien);
+		packD.add(lothlorien);
 		packD.add(laComarca);
 		
-		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION,36);
+		Producto packDegustacion = new PromocionAbsoluta("Pack Degustaciï¿½n", packD, TipoAtraccion.DEGUSTACION,36);
 		
 		assertTrue(packDegustacion.esUnaPromocion());
 	}
 	
 	@Test
 	public void queReduceCupoEnAtraccionesComponentes() {
-		Atraccion lothlórien = new Atraccion("Lothlórien",35,1,30,TipoAtraccion.DEGUSTACION);
+		Atraccion lothlorien = new Atraccion("Lothlï¿½rien",35,1,30,TipoAtraccion.DEGUSTACION);
 		Atraccion laComarca = new Atraccion("La Comarca",3,6.5,150,TipoAtraccion.DEGUSTACION);
 		
 		LinkedList<Atraccion> packD = new LinkedList<Atraccion>();
-		packD.add(lothlórien);
+		packD.add(lothlorien);
 		packD.add(laComarca);
 		
-		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION,36);
+		Producto packDegustacion = new PromocionAbsoluta("Pack Degustaciï¿½n", packD, TipoAtraccion.DEGUSTACION,36);
 		
 		packDegustacion.reducirCupo();
 		
-		assertEquals(29, lothlórien.getCupo());
+		assertEquals(29, lothlorien.getCupo());
 		assertEquals(149, laComarca.getCupo());
 		
 	}

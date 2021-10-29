@@ -15,15 +15,15 @@ public class OfertadorTest {
 		Producto laComarca = new Atraccion("La Comarca",3,6.5,150,TipoAtraccion.DEGUSTACION);
 		Producto mordor = new Atraccion("Mordor",25,3,4,TipoAtraccion.AVENTURA);
 		Producto abismoDeHelm = new Atraccion("Abismo de Helm",5,2,15,TipoAtraccion.PAISAJE);
-		Producto lothlórien = new Atraccion("Lothlórien",35,1,30,TipoAtraccion.DEGUSTACION);
+		Producto lothlorien = new Atraccion("Lothlï¿½rien",35,1,30,TipoAtraccion.DEGUSTACION);
 	    Producto erebor = new Atraccion("Erebor",12,3,32,TipoAtraccion.PAISAJE);
 		Producto bosqueNegro = new Atraccion("Bosque Negro",3,4,12,TipoAtraccion.AVENTURA);
 		
 		LinkedList<Atraccion> packD = new LinkedList<Atraccion>();
-		packD.add((Atraccion) lothlórien);
+		packD.add((Atraccion) lothlorien);
 		packD.add((Atraccion) laComarca);
 		
-		Producto packDegustacion = new PromocionAbsoluta("Pack Degustación", packD, TipoAtraccion.DEGUSTACION,36);
+		Producto packDegustacion = new PromocionAbsoluta("Pack Degustaciï¿½n", packD, TipoAtraccion.DEGUSTACION,36);
 		
 		LinkedList<Producto> ofertador = new LinkedList<Producto>();
 		
@@ -32,7 +32,7 @@ public class OfertadorTest {
 		ofertador.add(laComarca);
 		ofertador.add(mordor);
 		ofertador.add(abismoDeHelm);
-		ofertador.add(lothlórien);
+		ofertador.add(lothlorien);
 		ofertador.add(erebor);
 		ofertador.add(bosqueNegro);
 		ofertador.add(packDegustacion);
@@ -42,7 +42,7 @@ public class OfertadorTest {
 		TurismoTierraMedia.ordenarProductos(ofertador, sam.getTipoAtraccion());
 		
 		assertEquals(packDegustacion, ofertador.get(0));
-		assertEquals(lothlórien, ofertador.get(1));
+		assertEquals(lothlorien, ofertador.get(1));
 		assertEquals(laComarca, ofertador.get(2));
 		assertEquals(mordor, ofertador.get(3));
 		assertEquals(erebor, ofertador.get(4));

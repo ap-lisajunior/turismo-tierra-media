@@ -7,5 +7,5 @@ public interface UsuarioDAO extends GenericDAO<Usuario>{
 	
 	public abstract Usuario findByUsername(String username);
 	
-	public abstract LinkedList<Usuario> createUsuario();
+	public abstract LinkedList<Usuario> createUsuarios();
 }

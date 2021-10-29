@@ -22,7 +22,7 @@ public class TurismoTierraMedia {
 	
 	public static LinkedList<Usuario> getUsuarios() {
 		UsuarioDAO usuarioDAO = DAOFactory.getUsuarioDAO();
-		usuarios = usuarioDAO.createUsuario();
+		usuarios = usuarioDAO.createUsuarios();
 		return usuarios;
 	}
 	

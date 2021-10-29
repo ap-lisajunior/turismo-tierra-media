@@ -16,21 +16,7 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 
 	@Override
 	public List<Producto> findAll() {
-		try {
-			String sql = "SELECT NOMBRE, COSTO, TIEMPO, CUPO, TIPO FROM ATRACCIONES";
-			Connection conn = ConnectionProvider.getConnection();
-			PreparedStatement statement = conn.prepareStatement(sql);
-			ResultSet resultados = statement.executeQuery();
-
-			List<Producto> atracciones = new LinkedList<Producto>();
-			while (resultados.next()) {
-				atracciones.add(toAtraccion(resultados));
-			}
-
-			return atracciones;
-		} catch (Exception e) {
-			throw new MissingDataException(e);
-		}
+		return null;
 	}
 
 	@Override
